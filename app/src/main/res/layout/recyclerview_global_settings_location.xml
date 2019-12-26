@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/recyclerview_margin"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:divider="@android:color/transparent"
+    android:dividerHeight="0.0px"
+    app:cardElevation="@dimen/card_elevation"
+    app:cardPreventCornerOverlap="false"
+    app:elevation="@dimen/card_elevation">
+
+    <FrameLayout
+        android:id="@+id/rvi_holiday_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_sm">
+        <ImageView
+            android:id="@+id/rvi_iv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_mode_edit_24dp" />
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <TableRow
+                android:layout_marginBottom="@dimen/margin_sm">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Location:"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/h6" />
+
+                <TextView
+                    android:id="@+id/rvi_location_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/h6" />
+            </TableRow>
+
+            <TableRow
+                android:layout_marginBottom="@dimen/margin_sm">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bundee: "
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/h6" />
+
+                <TextView
+                    android:id="@+id/rvi_bundee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/h6" />
+            </TableRow>
+
+            <TableRow
+                android:layout_marginBottom="@dimen/margin_sm">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Schedule: "
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/h6" />
+
+                <TextView
+                    android:id="@+id/rvi_schedule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/h6" />
+            </TableRow>
+        </TableLayout>
+
+    </FrameLayout>
+</android.support.v7.widget.CardView>

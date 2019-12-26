@@ -1,0 +1,286 @@
+package com.example.timekeeping_beta.Fragments.UserEmployee.Clock;
+
+import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.MutableLiveData;
+import android.support.annotation.NonNull;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.timekeeping_beta.Globals.CustomClasses.MD5Hash;
+import com.example.timekeeping_beta.Globals.StaticData.URLs;
+import com.example.timekeeping_beta.Globals.Helper;
+import com.example.timekeeping_beta.Globals.Models.ApiResult;
+import com.example.timekeeping_beta.Globals.Models.User;
+import com.example.timekeeping_beta.Globals.SharedPrefManager;
+import com.example.timekeeping_beta.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import es.dmoral.toasty.Toasty;
+
+public class ClockViewModel extends AndroidViewModel {
+
+    private MutableLiveData<EDTR> LiveEDTR;
+    private MutableLiveData<ApiResult> timeInOutResult;
+    private MutableLiveData<Integer> pinInput1, pinInput2, pinInput3, pinInput4;
+
+    private Application app;
+    private Helper helper;
+
+    private RequestQueue queue;
+    private String DATABASE, TABLE;
+    private String url_check_clocked_in, url_time_in_out, url_show_timesheet, url_check_entry;
+    private User user;
+
+    public ClockViewModel(@NonNull Application application) {
+        super(application);
+
+        app = application;
+        URLs url = new URLs();
+        user = SharedPrefManager.getInstance(app.getBaseContext()).getUser();
+        queue = Volley.newRequestQueue(app.getBaseContext());
+        helper = Helper.getInstance(app.getBaseContext());
+
+        DATABASE = user.getC1();
+        TABLE = user.getC2();
+        url_check_clocked_in = url.url_check_clocked_in(user.getUser_id(), user.getApi_token(), user.getLink());
+        url_time_in_out = url.url_time_in_out(user.getApi_token(), user.getLink());
+        url_show_timesheet = url.url_show_timesheet(user.getApi_token(), user.getLink());
+        url_check_entry = url.url_check_entry(user.getUser_id(), user.getApi_token(), user.getLink());
+
+        pinInput1 = new MutableLiveData<>();
+        pinInput2 = new MutableLiveData<>();
+        pinInput3 = new MutableLiveData<>();
+        pinInput4 = new MutableLiveData<>();
+        LiveEDTR = new MutableLiveData<>();
+        timeInOutResult = new MutableLiveData<>();
+    }
+
+    public MutableLiveData<ApiResult> getTimeInOutResult() {
+
+        return this.timeInOutResult;
+    }
+
+    public MutableLiveData<EDTR> getUserEDTR() {
+
+        return this.LiveEDTR;
+    }
+
+    public void retrieveUserTimesheet() {
+        StringRequest requestTimesheet = new StringRequest(Request.Method.POST, url_show_timesheet, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jo_response = new JSONObject(response);
+
+                    if (jo_response.get("status").equals("success")) {
+
+                        JSONObject jo_msg = jo_response.getJSONObject("msg");
+                        String time_in = helper.convertToReadableTime(jo_msg.getString("time_in"));
+                        String time_out = helper.convertToReadableTime(jo_msg.getString("time_out"));
+                        int shift = jo_msg.getInt("shift");
+
+                        LiveEDTR.setValue(new EDTR(time_in, time_out, shift,""));
+                    } else {
+                        LiveEDTR.setValue(null);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    LiveEDTR.setValue(null);
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                LiveEDTR.setValue(null);
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                return Helper.getInstance(app.getBaseContext()).headers();
+            }
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", user.getUser_id());
+                params.put("date_in", helper.today());
+                return params;
+            }
+        };
+
+        queue.add(requestTimesheet);
+    }
+
+    public void retrieveUserTimeViaCheckTimedIn() {
+
+        StringRequest requestTimesheet = new StringRequest(Request.Method.POST, url_check_clocked_in, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jo_response = new JSONObject(response);
+
+                    if (jo_response.get("status").equals("success")) {
+
+                        JSONObject jo_msg = jo_response.getJSONObject("msg");
+                        String time_in = helper.convertToReadableTime(jo_msg.getString("time_in"));
+                        String time_out = helper.convertToReadableTime(jo_msg.getString("time_out"));
+                        int shift = jo_msg.getInt("shift");
+
+
+                        LiveEDTR.setValue(new EDTR(time_in, time_out,shift,""));
+                    } else {
+                        LiveEDTR.setValue(null);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    LiveEDTR.setValue(null);
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                LiveEDTR.setValue(null);
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("d", DATABASE);
+                headers.put("t", TABLE);
+                return headers;
+            }
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("date", helper.today());
+                return params;
+            }
+        };
+
+        queue.add(requestTimesheet);
+    }
+
+    public void check_edtr_entry() {
+        String url = url_check_entry;
+        StringRequest requestTimesheet = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jo_response = new JSONObject(response);
+
+                    if (jo_response.get("status").equals("success")) {
+
+                        Object jo_msg = jo_response.get("msg");
+
+                        String date_in = app.getResources().getString(R.string.blank_date);
+                        String time_in = app.getResources().getString(R.string.blank_time);
+                        String time_out = app.getResources().getString(R.string.blank_time);
+                        int shift = 0;
+
+                        if (jo_msg instanceof JSONObject) {
+                            JSONObject jo_msg2 = jo_response.getJSONObject("msg");
+
+                            date_in = helper.convertToReadableDate(jo_msg2.getString("date_in"));
+                            time_in = helper.convertToReadableTime(jo_msg2.getString("time_in"));
+                            time_out = helper.convertToReadableTime(jo_msg2.getString("time_out"));
+                            shift = jo_msg2.getInt("shift");
+                        }
+
+                        LiveEDTR.setValue(new EDTR(time_in, time_out,shift,date_in));
+                    } else {
+                        LiveEDTR.setValue(null);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    LiveEDTR.setValue(null);
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                LiveEDTR.setValue(null);
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = Helper.getInstance(app.getBaseContext()).headers();
+
+                return params;
+            }
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("date", helper.today());
+                return params;
+            }
+        };
+
+        queue.add(requestTimesheet);
+    }
+
+    public void sendTimeInOut() {
+
+        StringRequest requestTimeInOut = new StringRequest(Request.Method.POST, url_time_in_out, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                    if (obj.getString("status").equals("success")) {
+
+                        timeInOutResult.setValue(new ApiResult(true, "Success!"));
+                        check_edtr_entry();
+                    } else {
+                        timeInOutResult.setValue(new ApiResult(false, obj.getString("msg")));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    timeInOutResult.setValue(new ApiResult(false, e.toString()));
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                timeInOutResult.setValue(new ApiResult(false, "Error! Please try again"));
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                return Helper.getInstance(app.getBaseContext()).headers();
+            }
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", user.getUser_id());
+                params.put("time", helper.now());
+                params.put("date", helper.today());
+                params.put("reference", app.getBaseContext().getResources().getString(R.string.api_reference));
+
+                return params;
+            }
+        };
+
+        queue.add(requestTimeInOut);
+    }
+}

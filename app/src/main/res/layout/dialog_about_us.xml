@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:padding="@dimen/margin_lg">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Caimito Apps"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/h5" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Timekeeping Mobile App"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/h6" />
+
+    <TextView
+        android:id="@+id/tv_version_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="version 0.9"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/h6" />
+
+</LinearLayout>

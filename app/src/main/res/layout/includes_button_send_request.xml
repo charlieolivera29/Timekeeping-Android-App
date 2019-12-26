@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/btn_delete_leave"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    app:cardCornerRadius="@dimen/margin_lg"
+    app:strokeColor="@color/colorSuccess"
+    app:strokeWidth="@dimen/recyclerview_margin">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/m6"
+        android:layout_marginTop="@dimen/recyclerview_margin"
+        android:layout_marginRight="@dimen/m6"
+        android:layout_marginBottom="@dimen/recyclerview_margin"
+        android:text="SEND REQUEST"
+        android:textColor="@color/colorSuccess"
+        android:textSize="@dimen/h5" />
+</android.support.design.card.MaterialCardView>

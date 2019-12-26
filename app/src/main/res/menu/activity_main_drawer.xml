@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/menu_dashboard" />
+        <item
+            android:id="@+id/nav_timesheet"
+            android:icon="@drawable/ic_access_time_black_24dp"
+            android:title="@string/menu_timesheet" />
+    </group>
+
+    <item android:title="Time Request">
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_timesheet_request"
+                    android:icon="@drawable/ic_timesheet_request_24dp"
+                    android:title="@string/menu_timesheet_request"
+                    android:visible="false" />
+
+                <item
+                    android:id="@+id/nav_adjustment_request"
+                    android:icon="@drawable/ic_check_box_black_24dp"
+                    android:title="@string/menu_adjustment_request" />
+
+                <item
+                    android:id="@+id/nav_overtime_request"
+                    android:icon="@drawable/ic_hourglass_empty_black_24dp"
+                    android:title="@string/menu_overtime_request" />
+
+                <item
+                    android:id="@+id/nav_leave_request"
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="@string/menu_leave_request" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/nav_Approvals_Menu"
+        android:title="Approvals"
+        android:visible="false">
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_approver_employee"
+                    android:icon="@drawable/ic_people_green_24dp"
+                    android:title="@string/menu_approver_employee" />
+
+                <item
+                    android:id="@+id/nav_timesheet_Approvals"
+                    android:icon="@drawable/ic_timesheet_black_24dp"
+                    android:title="@string/menu_timesheet_approvals" />
+
+                <item
+                    android:id="@+id/nav_time_approvals"
+                    android:icon="@drawable/ic_mode_edit_24dp"
+                    android:title="@string/menu_adjustment_approvals" />
+
+                <item
+                    android:id="@+id/nav_overtime_approvals"
+                    android:icon="@drawable/ic_hourglass_full_black_24dp"
+                    android:title="@string/menu_overtime_approvals" />
+
+                <item
+                    android:id="@+id/nav_leave_approvals"
+                    android:icon="@drawable/ic_leave_black_24dp"
+                    android:title="@string/menu_leave_approvals" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/nav_HR_ADMIN_Menu"
+        android:title="@string/menu_hr_admin"
+        android:visible="false">
+
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_hr_dashboard"
+                    android:icon="@drawable/ic_dashboard_black_24dp"
+                    android:title="@string/hr_dashboard"
+                    android:visible="false" />
+
+                <item
+                    android:id="@+id/nav_employees"
+                    android:icon="@drawable/ic_many_person_black_24dp"
+                    android:title="@string/menu_empoyees" />
+
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/nav_Global_Settings_Menu"
+        android:title="Global Settings"
+        android:visible="false">
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_location_management"
+                    android:icon="@drawable/ic_location_on_black_24dp"
+                    android:title="@string/menu_location_management"
+                    android:visible="false" />
+
+                <item
+                    android:id="@+id/nav_schedule_management"
+                    android:icon="@drawable/ic_event_available_black_24dp"
+                    android:title="@string/menu_schedule_management" />
+
+                <item
+                    android:id="@+id/nav_holiday_management"
+                    android:icon="@drawable/ic_event_available_black_24dp"
+                    android:title="@string/menu_holiday_management" />
+
+                <item
+                    android:id="@+id/nav_holiday_types"
+                    android:icon="@drawable/ic_bookmark_border_black_24dp"
+                    android:title="@string/menu_holiday_types" />
+
+                <item
+                    android:id="@+id/nav_leave_types"
+                    android:icon="@drawable/ic_bookmark_border_black_24dp"
+                    android:title="@string/menu_leave_types" />
+
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="About us">
+        <menu>
+            <item
+                android:id="@+id/btnAboutUs"
+                android:icon="@drawable/ic_info_outline_white_24dp"
+                android:title="About us" />
+        </menu>
+    </item>
+
+    <item android:title="Logout">
+        <menu>
+            <item
+                android:id="@+id/btnLogout"
+                android:icon="@drawable/ic_logout_black_24dp"
+                android:title="Logout" />
+        </menu>
+    </item>
+</menu>

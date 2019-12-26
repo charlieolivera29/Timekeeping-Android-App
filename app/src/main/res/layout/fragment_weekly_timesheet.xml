@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/cv_monday_container"
+                layout="@layout/recyclerview_timesheet_weekly_entry" />
+
+            <include
+                android:id="@+id/cv_tuesday_container"
+                layout="@layout/recyclerview_timesheet_weekly_entry" />
+
+            <include
+                android:id="@+id/cv_wednesday_container"
+                layout="@layout/recyclerview_timesheet_weekly_entry" />
+
+            <include
+                android:id="@+id/cv_thursday_container"
+                layout="@layout/recyclerview_timesheet_weekly_entry" />
+
+            <include
+                android:id="@+id/cv_friday_container"
+                layout="@layout/recyclerview_timesheet_weekly_entry" />
+
+            <include
+                android:id="@+id/cv_saturday_container"
+                layout="@layout/recyclerview_timesheet_weekly_entry" />
+
+            <include
+                android:id="@+id/cv_sunday_container"
+                layout="@layout/recyclerview_timesheet_weekly_entry" />
+
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/m6"
+    android:layout_marginTop="@dimen/recyclerview_margin"
+    android:layout_marginRight="@dimen/m6"
+    android:layout_marginBottom="@dimen/recyclerview_margin"
+    android:text="EDIT REQUEST"
+    android:textColor="@color/colorPrimary"
+    android:textSize="@dimen/h6"
+
+
+    >
+
+</TextView>

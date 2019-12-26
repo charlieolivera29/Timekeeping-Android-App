@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite">
+
+    <!--<include-->
+    <!--android:id="@+id/modal_app_bar"-->
+    <!--layout="@layout/includes_appbar"-->
+    <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/m4"
+        android:layout_marginTop="@dimen/margin_lg"
+        android:layout_marginRight="@dimen/m4"
+        android:layout_marginBottom="@dimen/margin_lg"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Timesheet Entry"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/h4"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/m4"
+            android:text="Create an edtr adjustment."
+            android:textSize="@dimen/h6" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+
+            <TableRow android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date:"
+                    android:textSize="@dimen/h6" />
+
+                <TextView
+                    android:id="@+id/edtr_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/blank_date"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/h6"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Day type:"
+                    android:textSize="@dimen/h6" />
+
+                <TextView
+                    android:id="@+id/edtr_day_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/blank"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/h6"
+                    android:textStyle="bold" />
+
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time in:"
+                    android:textSize="@dimen/h6" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_time_in"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_sm"
+                        android:layout_marginLeft="@dimen/margin_sm"
+                        android:layout_toStartOf="@+id/btn_time_in"
+                        android:layout_toLeftOf="@+id/btn_time_in"
+                        android:gravity="center"
+                        android:text="@string/blank_time"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/h6"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/btn_time_in"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:background="@color/transparent"
+                        android:src="@drawable/ic_mode_edit_24dp" />
+
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time out:"
+                    android:textSize="@dimen/h6" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_time_out"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_sm"
+                        android:layout_marginLeft="@dimen/margin_sm"
+                        android:layout_toStartOf="@+id/btn_time_out"
+                        android:layout_toLeftOf="@+id/btn_time_out"
+                        android:gravity="center"
+                        android:text="@string/blank_time"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/h6"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/btn_time_out"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:background="@color/transparent"
+                        android:src="@drawable/ic_mode_edit_24dp" />
+                </RelativeLayout>
+
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_sm"
+            android:gravity="center"
+            android:text="Remarks:"
+            android:textSize="@dimen/h6" />
+
+        <EditText
+            android:id="@+id/edtxt_adjustment_reason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_lg"
+            android:layout_marginLeft="@dimen/margin_lg"
+            android:layout_marginBottom="@dimen/margin_lg"
+            android:hint="Remarks"
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:textColor="@color/colorBlack" />
+
+        <Button
+            android:id="@+id/btn_send_adjustment_request"
+            style="@style/AppCompatButtonSuccess"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SEND REQUEST"
+            android:textColor="@color/colorWhite" />
+
+    </LinearLayout>
+
+</RelativeLayout>

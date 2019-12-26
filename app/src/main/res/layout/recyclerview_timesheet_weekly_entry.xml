@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rv_timesheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/margin_lg"
+    android:layout_marginRight="@dimen/margin_lg"
+    android:layout_marginBottom="@dimen/margin_sm"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:divider="@android:color/transparent"
+    android:dividerHeight="0.0px"
+    app:cardCornerRadius="@dimen/cardview_radius"
+    app:cardPreventCornerOverlap="false"
+    app:elevation="@dimen/cardview_elevation">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <FrameLayout
+                android:id="@+id/timesheet_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGray"
+                android:padding="@dimen/margin_sm">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_sm"
+                    android:layout_marginRight="@dimen/margin_sm"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_day_of_week_output"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mon"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/h6" />
+
+                        <TextView
+                            android:id="@+id/tv_month_output"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="JAN"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/h5"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tv_date_output"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="01"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/h3P5"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/margin_sm"
+                android:layout_marginLeft="@dimen/margin_sm">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/ib_button_show"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_sm"
+                        android:src="@drawable/ic_remove_red_eye_black_24dp" />
+
+
+                    <ImageView
+                        android:id="@+id/ib_button_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_sm"
+                        android:src="@drawable/ic_mode_edit_24dp" />
+
+                    <ImageView
+                        android:id="@+id/ib_button_delete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_sm"
+                        android:src="@drawable/ic_delete" />
+
+                </LinearLayout>
+
+
+                <TableLayout
+                    android:id="@+id/anchr_edtr_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true">
+
+                    <TableRow
+                        android:layout_margin="@dimen/margin_sm"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="Day type:"
+                            android:textSize="@dimen/h6" />
+
+                        <TextView
+                            android:id="@+id/tv_day_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_sm"
+                            android:layout_marginLeft="@dimen/margin_sm"
+                            android:maxLines="1"
+                            android:text="REG"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/h6"
+                            android:textStyle="bold" />
+                    </TableRow>
+
+                    <TableRow>
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Time in:"
+                            android:textSize="@dimen/h6" />
+
+                        <TextView
+                            android:id="@+id/tv_time_in_output"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_sm"
+                            android:layout_marginLeft="@dimen/margin_sm"
+                            android:maxLines="1"
+                            android:text="@string/blank_time"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/h6"
+                            android:textStyle="bold" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Time out:"
+                            android:textSize="@dimen/h6" />
+
+                        <TextView
+                            android:id="@+id/tv_time_out_output"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_sm"
+                            android:layout_marginLeft="@dimen/margin_sm"
+                            android:maxLines="1"
+                            android:text="@string/blank_time"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/h6"
+                            android:textStyle="bold" />
+                    </TableRow>
+                </TableLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/legendLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/anchr_timesheet_data"
+                    android:orientation="horizontal" />
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="@dimen/margin_sm"
+                    android:layout_marginStart="@dimen/margin_sm"
+                    android:layout_marginLeft="@dimen/margin_sm"
+                    android:layout_marginTop="@dimen/margin_sm"
+                    android:layout_marginBottom="@dimen/margin_sm"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Day type"
+                        android:textSize="@dimen/h5" />
+
+                    <TextView
+                        android:id="@+id/tv_schedule_output"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autoSizeTextType="uniform"
+                        android:text="- - -"
+                        android:textSize="@dimen/h5" />
+
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
