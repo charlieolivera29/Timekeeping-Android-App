@@ -4,8 +4,6 @@ import android.app.Dialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
@@ -21,9 +19,6 @@ import android.widget.*
 import com.example.timekeeping_beta.Fragments.UserApprover.Approvee.ApproveesAdapter
 import com.example.timekeeping_beta.Fragments.UserApprover.Approvee.Models.Approvee
 import com.example.timekeeping_beta.Fragments.UserApprover.ApproveeDetails.ApproveeDetailFragment
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.RequestFragment
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjustmentAdapter.AdjustmentAdapter
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjustmentRequestItem
 import com.example.timekeeping_beta.Globals.CustomClasses.Interface.RecyclerViewClickListener
 import com.example.timekeeping_beta.R
 import es.dmoral.toasty.Toasty

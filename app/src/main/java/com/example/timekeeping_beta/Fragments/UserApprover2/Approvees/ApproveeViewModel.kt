@@ -6,16 +6,11 @@ import android.arch.lifecycle.MutableLiveData
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
-import com.example.timekeeping_beta.Fragments.UserApprover.Approvee.ApproveesAdapter
 import com.example.timekeeping_beta.Fragments.UserApprover.Approvee.Models.Approvee
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjustmentRequestItem
 import com.example.timekeeping_beta.Globals.Helper
-import com.example.timekeeping_beta.Globals.Models.UserProfileAll
 import com.example.timekeeping_beta.Globals.Models.queryStringBuilder
 import com.example.timekeeping_beta.Globals.SharedPrefManager
-import com.example.timekeeping_beta.Globals.StaticData.URLs
 import com.example.timekeeping_beta.Globals.StaticData.URLs_v2
-import es.dmoral.toasty.Toasty
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject

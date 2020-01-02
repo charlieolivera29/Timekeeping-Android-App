@@ -30,8 +30,8 @@ import com.example.timekeeping_beta.Fragments.Dashboard.ViewModel.DashboardViewM
 import com.example.timekeeping_beta.Fragments.UserApprover.Adjustment.AdjustmentsUpdateFragment;
 import com.example.timekeeping_beta.Fragments.UserApprover.Leave.LeaveUpdateFragment;
 import com.example.timekeeping_beta.Fragments.UserApprover.Overtime.OvertimeUpdateFragment;
-import com.example.timekeeping_beta.Fragments.UserEmployee.Clock.ClockViewModel;
-import com.example.timekeeping_beta.Fragments.UserEmployee.Clock.EDTR;
+import com.example.timekeeping_beta.Fragments.Clock.ClockViewModel;
+import com.example.timekeeping_beta.Fragments.Clock.EDTR;
 import com.example.timekeeping_beta.Globals.Models.ApiResult;
 import com.example.timekeeping_beta.Globals.Models.User;
 import com.example.timekeeping_beta.Globals.SharedPrefManager;

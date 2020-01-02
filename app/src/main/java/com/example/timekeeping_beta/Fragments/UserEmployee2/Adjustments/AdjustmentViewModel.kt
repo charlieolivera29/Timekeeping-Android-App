@@ -6,7 +6,7 @@ import android.arch.lifecycle.MutableLiveData
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjustmentRequestItem
+import com.example.timekeeping_beta.Fragments.UserEmployee2.Adjustments.Models.AdjustmentRequestItem
 import com.example.timekeeping_beta.Globals.CustomClasses.Flag
 import com.example.timekeeping_beta.Globals.Helper
 import com.example.timekeeping_beta.Globals.Models.Pagination

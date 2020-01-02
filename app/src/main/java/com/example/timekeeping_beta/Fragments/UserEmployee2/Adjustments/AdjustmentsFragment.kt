@@ -1,6 +1,5 @@
 package com.example.timekeeping_beta.Fragments.UserEmployee2.Adjustments
 
-import android.app.DatePickerDialog
 import android.app.Dialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -10,7 +9,6 @@ import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.AppCompatImageButton
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
@@ -21,18 +19,15 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.*
-import com.example.timekeeping_beta.Fragments.UserApprover.Adjustment.Adjustment
 import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.RequestFragment
 import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.ShowFragment.ShowPendingDetails
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjustmentAdapter.AdjustmentAdapter
 import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjustmentAdapter.PendingAdapter
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjustmentRequestItem
+import com.example.timekeeping_beta.Fragments.UserEmployee2.Adjustments.Models.AdjustmentRequestItem
 import com.example.timekeeping_beta.Globals.CustomClasses.Flag
 import com.example.timekeeping_beta.Globals.Helper
 import com.example.timekeeping_beta.Globals.Models.Pagination
 import com.example.timekeeping_beta.R
 import es.dmoral.toasty.Toasty
-import java.util.*
 import kotlin.collections.ArrayList
 
 class AdjustmentsFragment : Fragment(), PendingAdapter.OnItemClickListener {
@@ -97,7 +92,7 @@ class AdjustmentsFragment : Fragment(), PendingAdapter.OnItemClickListener {
 
         bvn_navigation_overtimes.setOnNavigationItemSelectedListener(navListener)
 
-        FilterDialog = Dialog(context)
+        FilterDialog = Dialog(context!!)
         FilterDialog.setContentView(R.layout.dialog_filter)
         FilterDialog.setOnDismissListener { search = "" }
         filterDialog()

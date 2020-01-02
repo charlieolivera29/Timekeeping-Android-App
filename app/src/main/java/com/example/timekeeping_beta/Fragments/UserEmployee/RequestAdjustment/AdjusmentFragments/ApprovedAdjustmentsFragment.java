@@ -23,7 +23,7 @@ import com.example.timekeeping_beta.Fragments.Retry.TryAgainFromNestedFrament;
 import com.example.timekeeping_beta.Globals.CustomClasses.Flag;
 import com.example.timekeeping_beta.R;
 import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjustmentAdapter.AdjustmentAdapter;
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjustmentRequestItem;
+import com.example.timekeeping_beta.Fragments.UserEmployee2.Adjustments.Models.AdjustmentRequestItem;
 import com.example.timekeeping_beta.Globals.StaticData.URLs;
 import com.example.timekeeping_beta.Globals.SharedPrefManager;
 import com.example.timekeeping_beta.Globals.Models.User;

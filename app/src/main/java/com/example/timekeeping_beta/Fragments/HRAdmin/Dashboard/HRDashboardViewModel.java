@@ -187,6 +187,8 @@ public class HRDashboardViewModel extends AndroidViewModel {
                     } else if (status.equals("error")) {
 
                         BundeeEmployees.setValue(null);
+                    } else {
+                        TopLateEmployees.setValue(null);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -464,6 +466,8 @@ public class HRDashboardViewModel extends AndroidViewModel {
                     } else if (status.equals("error")) {
 
                         TopLateEmployees.setValue(null);
+                    } else {
+                        TopLateEmployees.setValue(null);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -510,7 +514,6 @@ public class HRDashboardViewModel extends AndroidViewModel {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
 
 
         }

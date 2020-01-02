@@ -20,8 +20,8 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.timekeeping_beta.Fragments.UserEmployee.Clock.ClockViewModel
-import com.example.timekeeping_beta.Fragments.UserEmployee.Clock.EDTR
+import com.example.timekeeping_beta.Fragments.Clock.ClockViewModel
+import com.example.timekeeping_beta.Fragments.Clock.EDTR
 import com.example.timekeeping_beta.Globals.Models.ApiResult
 import com.example.timekeeping_beta.R
 import es.dmoral.toasty.Toasty

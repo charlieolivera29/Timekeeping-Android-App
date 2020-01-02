@@ -19,14 +19,8 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.*
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.RequestFragment
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.ShowFragment.ShowPendingDetails
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjustmentAdapter.AdjustmentAdapter
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjustmentRequestItem
 import com.example.timekeeping_beta.Fragments.UserEmployee.RequestLeave.LeaveAdapter.LeaveAdapter
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestLeave.LeaveAdapter.LeavePendingAdapter
 import com.example.timekeeping_beta.Fragments.UserEmployee.RequestLeave.LeaveFragments.RequestLeaveFragment
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestLeave.LeaveFragments.ShowFragment.ShowLeaveApproveDetails
 import com.example.timekeeping_beta.Fragments.UserEmployee.RequestLeave.LeaveFragments.ShowFragment.ShowLeaveDetails
 import com.example.timekeeping_beta.Fragments.UserEmployee.RequestLeave.LeaveRequestItem
 import com.example.timekeeping_beta.Globals.CustomClasses.Flag

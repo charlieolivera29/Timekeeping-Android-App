@@ -1,8 +1,6 @@
 package com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.ShowFragment;
 
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.content.ComponentName;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.design.card.MaterialCardView;
@@ -27,14 +25,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.timekeeping_beta.Fragments.UserEmployee2.Adjustments.AdjustmentViewModel;
 import com.example.timekeeping_beta.Globals.Helper;
 import com.example.timekeeping_beta.R;
 import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.DialogFragment.DeleteDialogFragment;
 import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.DialogFragment.TimeInAdjustmentPickerFragment;
 import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.DialogFragment.TimeOutAdjustmentPickerFragment;
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.Models.TimeAdjustment;
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjustmentRequestItem;
+import com.example.timekeeping_beta.Fragments.UserEmployee2.Adjustments.Models.TimeAdjustment;
+import com.example.timekeeping_beta.Fragments.UserEmployee2.Adjustments.Models.AdjustmentRequestItem;
 import com.example.timekeeping_beta.Globals.StaticData.URLs;
 import com.example.timekeeping_beta.Globals.SharedPrefManager;
 import com.example.timekeeping_beta.Globals.Models.User;

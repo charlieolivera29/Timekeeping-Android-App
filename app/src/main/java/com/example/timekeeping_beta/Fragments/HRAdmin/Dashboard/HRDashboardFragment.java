@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -20,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.timekeeping_beta.Fragments.HRAdmin.Dashboard.Models.EmployeeTopLates;
 import com.example.timekeeping_beta.Globals.CustomClasses.Flag;
@@ -48,6 +51,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class HRDashboardFragment extends Fragment implements OnChartValueSelectedListener {
 
@@ -68,6 +73,11 @@ public class HRDashboardFragment extends Fragment implements OnChartValueSelecte
     private String selectedRange = "today";
     private Spinner spnnr_top_lates_date_range;
 
+
+    private Helper helper;
+    private Context ctx;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -76,6 +86,8 @@ public class HRDashboardFragment extends Fragment implements OnChartValueSelecte
         if (getArguments() != null) {
             tag = getArguments().getString("fragment_tag");
         }
+        ctx = v.getContext();
+        helper = Helper.getInstance(ctx);
 
         swipeRefresh = v.findViewById(R.id.swipeRefresh);
 
@@ -93,6 +105,15 @@ public class HRDashboardFragment extends Fragment implements OnChartValueSelecte
         spnnr_top_lates_date_range = v.findViewById(R.id.spnnr_top_lates_date_range);
 
 
+        layout_empty_bundee = v.findViewById(R.id.layout_empty_bundee);
+        layout_empty_top_lates = v.findViewById(R.id.layout_empty_top_lates);
+
+
+        tv_head_bundee = layout_empty_bundee.findViewById(R.id.tv_head);
+        tv_body_bundee = layout_empty_bundee.findViewById(R.id.tv_body);
+        tv_head_top_lates = layout_empty_top_lates.findViewById(R.id.tv_head);
+        tv_body_top_lates = layout_empty_top_lates.findViewById(R.id.tv_body);
+
         pieChart = v.findViewById(R.id.pieChart);
         pieChart.setNoDataText("OOPS! Something went wrong");
         pieChart.setNoDataTextColor(R.color.colorGray);
@@ -108,6 +129,9 @@ public class HRDashboardFragment extends Fragment implements OnChartValueSelecte
         return v;
     }
 
+    private boolean data1HasResult = false;
+    private boolean data2HasResult = false;
+
     private void setListeners() {
 
         ArrayList listOptions = new ArrayList<String>();
@@ -121,11 +145,17 @@ public class HRDashboardFragment extends Fragment implements OnChartValueSelecte
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent != null) {
-                    selectedRange = parent.getSelectedItem().toString();
-                    HRDashboardViewModel.retriveTop10Lates(selectedRange);
 
-                    whenLoading(true);
-                }
+                    if (helper.isNetworkAvailable()) {
+                        selectedRange = parent.getSelectedItem().toString();
+                        HRDashboardViewModel.retriveTop10Lates(selectedRange);
+
+                        whenLoading(true);
+                    } else {
+                        Toasty.info(ctx,"Please connect to the internet",Toasty.LENGTH_LONG).show();
+                        swipeRefresh.setRefreshing(false);
+                    }
+               }
             }
 
             @Override
@@ -137,10 +167,16 @@ public class HRDashboardFragment extends Fragment implements OnChartValueSelecte
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //HRDashboardViewModel.retrieveHRDashboard();
-                HRDashboardViewModel.retriveBundeeCount();
-                HRDashboardViewModel.retriveBundeeEmployees();
-                HRDashboardViewModel.retriveTop10Lates(selectedRange);
+                //HRDashboardViewModel.retrieveHRDashboard();]
+                if (helper.isNetworkAvailable()) {
+                    whenLoading(false);
+                    HRDashboardViewModel.retriveBundeeCount();
+                    HRDashboardViewModel.retriveBundeeEmployees();
+                    HRDashboardViewModel.retriveTop10Lates(selectedRange);
+                } else {
+                    Toasty.info(ctx,"Please connect to the internet",Toasty.LENGTH_LONG).show();
+                    swipeRefresh.setRefreshing(false);
+                }
             }
         });
 
@@ -226,11 +262,6 @@ public class HRDashboardFragment extends Fragment implements OnChartValueSelecte
         });
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
     private void init() {
 
         whenLoading(false);
@@ -261,7 +292,9 @@ public class HRDashboardFragment extends Fragment implements OnChartValueSelecte
 
         if (HRDashboardViewModel.getDashboardDailyAttendance().getValue() != null) {
             DashboardBundeeCount = HRDashboardViewModel.getDashboardBundeeCount().getValue();
-            setToChart(DashboardBundeeCount);
+            if (DashboardBundeeCount != null) {
+                setToChart(DashboardBundeeCount);
+            }
             whenSuccess();
         } else {
             HRDashboardViewModel.retriveBundeeCount();
@@ -269,12 +302,21 @@ public class HRDashboardFragment extends Fragment implements OnChartValueSelecte
             HRDashboardViewModel.getDashboardBundeeCount().observe(this, new Observer<DashboardBundeeCount>() {
                 @Override
                 public void onChanged(@Nullable DashboardBundeeCount dashboardBundeeCount) {
+
+                    data1HasResult = true;
+
                     if (dashboardBundeeCount != null) {
 
-                        DashboardBundeeCount = dashboardBundeeCount;
-                        setToChart(dashboardBundeeCount);
+                        if (dashboardBundeeCount.getCount().length() > 0) {
+                            DashboardBundeeCount = dashboardBundeeCount;
+                            setToChart(dashboardBundeeCount);
+                            whenSuccess();
+                        } else {
+                            empty();
+                        }
+                    } else {
+                        empty();
                     }
-                    whenSuccess();
                 }
             });
         }
@@ -293,15 +335,39 @@ public class HRDashboardFragment extends Fragment implements OnChartValueSelecte
             HRDashboardViewModel.getTopLateEmployees().observe(this, new Observer<ArrayList<EmployeeTopLates>>() {
                 @Override
                 public void onChanged(@Nullable ArrayList<EmployeeTopLates> topLates) {
+
+                    data2HasResult = true;
+
                     if (topLates != null) {
 
-                        DashboardTopLateEmployees = topLates;
-                        setToBarChart();
+                        if (!topLates.isEmpty()) {
+                            DashboardTopLateEmployees = minutesLateChecker(topLates);
+                            setToBarChart();
+                            whenSuccess();
+                        } else {
+                            empty();
+                        }
+                    } else {
+                        empty();
                     }
-                    whenSuccess();
                 }
             });
         }
+    }
+
+    private ArrayList<EmployeeTopLates> minutesLateChecker(ArrayList<EmployeeTopLates> list) {
+
+        ArrayList<EmployeeTopLates> innerList = new ArrayList<>();
+        int i = 0;
+
+        for (EmployeeTopLates l : list) {
+
+            if (l.getMinutesLate() != 0) {
+                innerList.add(l);
+            }
+            i++;
+        }
+        return innerList;
     }
 
 
@@ -431,6 +497,9 @@ public class HRDashboardFragment extends Fragment implements OnChartValueSelecte
 
     private void whenLoading(Boolean loadingFromFilter) {
 
+        layout_empty_top_lates.setVisibility(View.GONE);
+        layout_empty_bundee.setVisibility(View.GONE);
+
         if (loadingFromFilter) {
             barchart.setVisibility(View.GONE);
             tv_loading_bc_data.setVisibility(View.VISIBLE);
@@ -444,19 +513,51 @@ public class HRDashboardFragment extends Fragment implements OnChartValueSelecte
             tv_loading_data.setVisibility(View.VISIBLE);
             tv_loading_bc_data.setVisibility(View.VISIBLE);
         }
-
     }
 
     private void whenSuccess() {
 
-        if (DashboardTopLateEmployees != null && DashboardBundeeCount != null) {
+        loadingScreen();
 
+        layout_empty_top_lates.setVisibility(View.GONE);
+        layout_empty_bundee.setVisibility(View.GONE);
+
+        tv_loading_data.setVisibility(View.GONE);
+        tv_loading_bc_data.setVisibility(View.GONE);
+    }
+
+    private ConstraintLayout layout_empty_bundee, layout_empty_top_lates;
+    private TextView tv_head_bundee, tv_body_bundee, tv_head_top_lates, tv_body_top_lates;
+
+    private void empty() {
+
+        tv_loading_data.setVisibility(View.GONE);
+        tv_loading_bc_data.setVisibility(View.GONE);
+        tv_loading_data.setVisibility(View.GONE);
+        tv_loading_bc_data.setVisibility(View.GONE);
+
+        if (DashboardTopLateEmployees == null) {
+            layout_empty_top_lates.setVisibility(View.VISIBLE);
+            tv_head_bundee.setText("Empty!");
+            tv_body_bundee.setText("No one is late at the moment.");
+        }
+        if (DashboardBundeeCount == null) {
+            layout_empty_bundee.setVisibility(View.VISIBLE);
+            tv_head_top_lates.setText("Empty!");
+            tv_body_top_lates.setText("No one is present at the moment.");
+        }
+
+        loadingScreen();
+    }
+
+    private void loadingScreen() {
+
+        //if (DashboardTopLateEmployees != null && DashboardBundeeCount != null) {
+        if (data1HasResult && data2HasResult) {
             swipeRefresh.setEnabled(true);
             swipeRefresh.setRefreshing(false);
         }
 
-        tv_loading_data.setVisibility(View.GONE);
-        tv_loading_bc_data.setVisibility(View.GONE);
     }
 
     @Override
