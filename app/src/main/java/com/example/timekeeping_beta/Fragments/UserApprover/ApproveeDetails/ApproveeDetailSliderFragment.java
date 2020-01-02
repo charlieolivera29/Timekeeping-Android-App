@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.timekeeping_beta.Fragments.Dashboard.DashboardFragment;
+import com.example.timekeeping_beta.Fragments.DEPRECATED.Dashboard.DashboardFragment;
 import com.example.timekeeping_beta.R;
 
 public class ApproveeDetailSliderFragment extends Fragment {

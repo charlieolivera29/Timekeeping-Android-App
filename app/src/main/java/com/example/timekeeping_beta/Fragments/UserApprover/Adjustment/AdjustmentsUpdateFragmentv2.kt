@@ -18,7 +18,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.*
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.RequestFragment
+import com.example.timekeeping_beta.Fragments.DEPRECATED.DEPRECATED_UserEmployee.RequestAdjustment.AdjusmentFragments.RequestFragment
 import com.example.timekeeping_beta.Globals.CustomClasses.Flag
 import com.example.timekeeping_beta.Globals.Models.Pagination
 import com.example.timekeeping_beta.R

@@ -36,9 +36,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.timekeeping_beta.Fragments.DashBoardVersion2.DashboardSliderFragment;
-import com.example.timekeeping_beta.Fragments.DashBoardVersion2.UserDashboardFragment;
-import com.example.timekeeping_beta.Fragments.Dashboard.ViewModel.DashboardViewModel;
+import com.example.timekeeping_beta.Fragments.DashBoard.DashboardSliderFragment;
+import com.example.timekeeping_beta.Fragments.DashBoard.UserDashboardFragment;
+import com.example.timekeeping_beta.Fragments.DashBoard.DashboardViewModel;
 import com.example.timekeeping_beta.Fragments.GlobalSettings.HolidayTypes.HolidayTypesFragment;
 import com.example.timekeeping_beta.Fragments.GlobalSettings.HolidayManagement.HolidaysFragment;
 import com.example.timekeeping_beta.Fragments.GlobalSettings.LeaveTypes.LeaveTypesFragment;
@@ -53,18 +53,18 @@ import com.example.timekeeping_beta.Fragments.UserApprover.ApproveeDetails.Appro
 import com.example.timekeeping_beta.Fragments.UserApprover.EDTR.EDTRUpdateFragmentv2;
 import com.example.timekeeping_beta.Fragments.UserApprover.Leave.LeaveUpdateFragmentv2;
 import com.example.timekeeping_beta.Fragments.UserApprover.Overtime.OvertimeUpdateFragmentv2;
-import com.example.timekeeping_beta.Fragments.UserApprover2.Approvees.ApproveesFragment;
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.RequestFragment;
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestEDTR.TimesheetEntryFragment;
-import com.example.timekeeping_beta.Fragments.UserEmployee2.Adjustments.AdjustmentsFragment;
-import com.example.timekeeping_beta.Fragments.UserEmployee2.Leaves.LeavesFragment;
-import com.example.timekeeping_beta.Fragments.UserEmployee2.Overtimes.OvertimeFragment;
+import com.example.timekeeping_beta.Fragments.UserApprover.Approvee.ApproveesFragment;
+import com.example.timekeeping_beta.Fragments.DEPRECATED.DEPRECATED_UserEmployee.RequestAdjustment.AdjusmentFragments.RequestFragment;
+import com.example.timekeeping_beta.Fragments.DEPRECATED.DEPRECATED_UserEmployee.RequestEDTR.TimesheetEntryFragment;
+import com.example.timekeeping_beta.Fragments.UserEmployee.Adjustments.AdjustmentsFragment;
+import com.example.timekeeping_beta.Fragments.UserEmployee.Leaves.LeavesFragment;
+import com.example.timekeeping_beta.Fragments.UserEmployee.Overtimes.OvertimeFragment;
 import com.example.timekeeping_beta.Globals.CustomClasses.BadgeDrawerArrowDrawable;
 import com.example.timekeeping_beta.Globals.Static;
 import com.example.timekeeping_beta.Globals.StaticData.URLs;
 import com.example.timekeeping_beta.Globals.Helper;
 import com.example.timekeeping_beta.R;
-import com.example.timekeeping_beta.Fragments.Dashboard.DashboardFragment;
+import com.example.timekeeping_beta.Fragments.DEPRECATED.Dashboard.DashboardFragment;
 import com.example.timekeeping_beta.Fragments.Timesheet.TimesheetFragment;
 import com.example.timekeeping_beta.Globals.SharedPrefManager;
 import com.example.timekeeping_beta.Globals.Models.User;
@@ -528,7 +528,7 @@ public class MainActivity extends AppCompatActivity
             this.setTitle(getResources().getString(R.string.title_fragment_approver_employees));
         } else if (currentFragment instanceof AdjustmentsFragment) {
             this.setTitle(getResources().getString(R.string.title_fragment_adjustments_requests));
-        } else if (currentFragment instanceof com.example.timekeeping_beta.Fragments.UserEmployee2.Overtimes.OvertimeFragment) {
+        } else if (currentFragment instanceof com.example.timekeeping_beta.Fragments.UserEmployee.Overtimes.OvertimeFragment) {
             this.setTitle(getResources().getString(R.string.title_fragment_overtime_requests));
         } else if (currentFragment instanceof LeavesFragment) {
             this.setTitle(getResources().getString(R.string.title_fragment_leave_requests));
@@ -629,7 +629,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_overtime_request) {
 
             //changeFragment("OvertimeFragment", new OvertimeFragment());
-            changeFragment("OvertimeFragment", new com.example.timekeeping_beta.Fragments.UserEmployee2.Overtimes.OvertimeFragment());
+            changeFragment("OvertimeFragment", new com.example.timekeeping_beta.Fragments.UserEmployee.Overtimes.OvertimeFragment());
         } else if (id == R.id.nav_timesheet_request) {
 
             changeFragment("TimesheetEntryFragment", new TimesheetEntryFragment());

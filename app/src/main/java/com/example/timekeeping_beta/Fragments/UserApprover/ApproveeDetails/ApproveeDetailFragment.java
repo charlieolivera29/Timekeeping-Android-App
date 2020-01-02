@@ -22,7 +22,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.timekeeping_beta.Fragments.UserApprover.ApproveeTimesheet.ApproveeTimesheetFragment;
-import com.example.timekeeping_beta.Fragments.UserApprover.Approvee.ApproversEmployeesFragment;
+import com.example.timekeeping_beta.Fragments.DEPRECATED.ApproversEmployeesFragment;
 import com.example.timekeeping_beta.Fragments.UserApprover.Approvee.ApproveeProfileViewModel;
 import com.example.timekeeping_beta.Globals.Helper;
 import com.example.timekeeping_beta.R;
