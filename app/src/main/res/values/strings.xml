@@ -137,4 +137,7 @@
     <string name="instruction_title_edtr_weekly">Create a Weekly Request</string>
     <string name="instruction_body_edtr_weekly">Request for an adjustment for all the days you were present within the week. After editing, click the save button. Wait for your approver to approve your request</string>
 
+    <string name="empty_title">Empty!</string>
+    <string name="empty_body">Nothing to show</string>
+
 </resources>

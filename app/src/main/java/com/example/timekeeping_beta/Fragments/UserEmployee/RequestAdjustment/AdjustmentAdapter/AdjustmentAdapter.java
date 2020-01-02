@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.timekeeping_beta.R;
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjustmentRequestItem;
+import com.example.timekeeping_beta.Fragments.UserEmployee2.Adjustments.Models.AdjustmentRequestItem;
 import com.example.timekeeping_beta.Globals.Helper;
 
 import java.util.List;

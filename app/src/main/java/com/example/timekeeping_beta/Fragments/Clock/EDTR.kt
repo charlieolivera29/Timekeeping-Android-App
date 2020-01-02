@@ -1,4 +1,4 @@
-package com.example.timekeeping_beta.Fragments.UserEmployee.Clock
+package com.example.timekeeping_beta.Fragments.Clock
 
 data class EDTR (
 

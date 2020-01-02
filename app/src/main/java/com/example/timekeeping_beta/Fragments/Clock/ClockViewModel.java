@@ -1,4 +1,4 @@
-package com.example.timekeeping_beta.Fragments.UserEmployee.Clock;
+package com.example.timekeeping_beta.Fragments.Clock;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
@@ -11,7 +11,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.timekeeping_beta.Globals.CustomClasses.MD5Hash;
 import com.example.timekeeping_beta.Globals.StaticData.URLs;
 import com.example.timekeeping_beta.Globals.Helper;
 import com.example.timekeeping_beta.Globals.Models.ApiResult;
@@ -24,8 +23,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import es.dmoral.toasty.Toasty;
 
 public class ClockViewModel extends AndroidViewModel {
 

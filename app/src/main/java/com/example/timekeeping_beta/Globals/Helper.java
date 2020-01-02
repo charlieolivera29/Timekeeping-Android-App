@@ -1,6 +1,8 @@
 package com.example.timekeeping_beta.Globals;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.ParseException;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.CircularProgressDrawable;
@@ -281,6 +283,13 @@ public class Helper {
 
             }
         };
+    }
+
+    public boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) mCtx.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
 }

@@ -26,7 +26,7 @@ import com.example.timekeeping_beta.Globals.CustomClasses.Flag;
 import com.example.timekeeping_beta.R;
 import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.ShowFragment.ShowPendingDetails;
 import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjustmentAdapter.PendingAdapter;
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjustmentRequestItem;
+import com.example.timekeeping_beta.Fragments.UserEmployee2.Adjustments.Models.AdjustmentRequestItem;
 import com.example.timekeeping_beta.Globals.StaticData.URLs;
 import com.example.timekeeping_beta.Globals.Helper;
 import com.example.timekeeping_beta.Globals.SharedPrefManager;

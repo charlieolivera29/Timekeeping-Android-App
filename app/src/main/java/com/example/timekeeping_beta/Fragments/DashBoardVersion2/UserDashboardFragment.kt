@@ -27,8 +27,8 @@ import com.example.timekeeping_beta.Fragments.UserApprover.Adjustment.Adjustment
 import com.example.timekeeping_beta.Fragments.UserApprover.EDTR.EDTRUpdateFragmentv2
 import com.example.timekeeping_beta.Fragments.UserApprover.Leave.LeaveUpdateFragmentv2
 import com.example.timekeeping_beta.Fragments.UserApprover.Overtime.OvertimeUpdateFragmentv2
-import com.example.timekeeping_beta.Fragments.UserEmployee.Clock.ClockViewModel
-import com.example.timekeeping_beta.Fragments.UserEmployee.Clock.EDTR
+import com.example.timekeeping_beta.Fragments.Clock.ClockViewModel
+import com.example.timekeeping_beta.Fragments.Clock.EDTR
 import com.example.timekeeping_beta.Fragments.UserEmployee.RequestEDTR.TimesheetEntryFragment
 import com.example.timekeeping_beta.Fragments.UserEmployee2.Adjustments.AdjustmentsFragment
 import com.example.timekeeping_beta.Fragments.UserEmployee2.Leaves.LeavesFragment
@@ -395,7 +395,7 @@ class UserDashboardFragment : Fragment() {
 
             tv_total_lates.text = if (dashboardCount?.total_hrs.toString() != "null") dashboardCount?.total_hrs.toString() else "0"
 
-            if (dashboardCount!!.names.length() > 0) {
+            if (dashboardCount != null && dashboardCount.names.length() > 0) {
                 tv_total_lates.setOnClickListener {
 
                     val goToFragment: Fragment = HRDashboardEmployeeList()
@@ -421,7 +421,7 @@ class UserDashboardFragment : Fragment() {
             val dashboardCount = it
 
             tv_total_overtime.text = if (dashboardCount?.total_hrs.toString() != "null") dashboardCount?.total_hrs.toString() else "0"
-            if (dashboardCount!!.names.length() > 0) {
+            if (dashboardCount != null && dashboardCount.names.length() > 0) {
                 tv_total_overtime.setOnClickListener {
 
                     val goToFragment: Fragment = HRDashboardEmployeeList()

@@ -2,7 +2,6 @@ package com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.Ad
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -21,10 +20,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.timekeeping_beta.Fragments.UserEmployee2.Adjustments.AdjustmentViewModel;
 import com.example.timekeeping_beta.Globals.Helper;
 import com.example.timekeeping_beta.R;
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.Models.TimeAdjustment;
+import com.example.timekeeping_beta.Fragments.UserEmployee2.Adjustments.Models.TimeAdjustment;
 import com.example.timekeeping_beta.Globals.StaticData.URLs;
 import com.example.timekeeping_beta.Globals.SharedPrefManager;
 import com.example.timekeeping_beta.Globals.Models.User;

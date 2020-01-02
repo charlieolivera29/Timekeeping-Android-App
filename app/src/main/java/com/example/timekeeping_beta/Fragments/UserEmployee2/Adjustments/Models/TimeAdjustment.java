@@ -1,4 +1,4 @@
-package com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.Models;
+package com.example.timekeeping_beta.Fragments.UserEmployee2.Adjustments.Models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
