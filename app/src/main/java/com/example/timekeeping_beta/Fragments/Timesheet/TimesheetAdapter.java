@@ -23,7 +23,7 @@ import com.example.timekeeping_beta.Fragments.GlobalSettings.LeaveTypes.LeaveTyp
 import com.example.timekeeping_beta.Fragments.GlobalSettings.LeaveTypes.LeaveTypesViewModel;
 import com.example.timekeeping_beta.Globals.Helper;
 import com.example.timekeeping_beta.R;
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.RequestFragment;
+import com.example.timekeeping_beta.Fragments.DEPRECATED.DEPRECATED_UserEmployee.RequestAdjustment.AdjusmentFragments.RequestFragment;
 
 import java.util.List;
 

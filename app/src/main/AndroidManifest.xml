@@ -22,10 +22,10 @@
         android:usesCleartextTraffic="true"
         android:fullBackupContent="@xml/backup_descriptor">
 
-        <activity android:name=".Fragments.UserEmployee.RequestLeave.LeaveFragments.ShowFragment.ShowLeaveApproveDetails" />
-        <activity android:name=".Fragments.UserEmployee.RequestLeave.LeaveFragments.ShowFragment.ShowLeaveDetails" />
-        <activity android:name=".Fragments.UserEmployee.RequestOvertime.ShowOvertimeDetails" />
-        <activity android:name=".Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.ShowFragment.ShowPendingDetails" />
+        <activity android:name="com.example.timekeeping_beta.Fragments.DEPRECATED.DEPRECATED_UserEmployee.RequestLeave.LeaveFragments.ShowFragment.ShowLeaveApproveDetails" />
+        <activity android:name="com.example.timekeeping_beta.Fragments.DEPRECATED.DEPRECATED_UserEmployee.RequestLeave.LeaveFragments.ShowFragment.ShowLeaveDetails" />
+        <activity android:name="com.example.timekeeping_beta.Fragments.DEPRECATED.DEPRECATED_UserEmployee.RequestOvertime.ShowOvertimeDetails" />
+        <activity android:name="com.example.timekeeping_beta.Fragments.DEPRECATED.DEPRECATED_UserEmployee.RequestAdjustment.AdjusmentFragments.ShowFragment.ShowPendingDetails" />
 
         <activity
             android:name=".Activities.LoginActivity">

@@ -22,7 +22,7 @@ import android.widget.TextView;
 import com.example.timekeeping_beta.Fragments.GlobalSettings.LeaveTypes.LeaveType;
 import com.example.timekeeping_beta.Fragments.GlobalSettings.LeaveTypes.LeaveTypesViewModel;
 import com.example.timekeeping_beta.Fragments.Timesheet.TimesheetItem;
-import com.example.timekeeping_beta.Fragments.UserEmployee.RequestAdjustment.AdjusmentFragments.RequestFragment;
+import com.example.timekeeping_beta.Fragments.DEPRECATED.DEPRECATED_UserEmployee.RequestAdjustment.AdjusmentFragments.RequestFragment;
 import com.example.timekeeping_beta.Globals.Helper;
 import com.example.timekeeping_beta.R;
 
