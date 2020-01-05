@@ -61,7 +61,7 @@ public class LeaveTypesViewModel extends AndroidViewModel {
 
     public void retrieveAllLeaveTypes(){
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url_resource_leave_types, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url_resource_leave_types + "&data=all", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -92,6 +92,7 @@ public class LeaveTypesViewModel extends AndroidViewModel {
                 Map<String, String> headers = new HashMap<>();
                 headers.put("d", DATABASE);
                 headers.put("t", TABLE);
+                headers.put("token", user.getToken());
                 return headers;
             }
         };
@@ -232,5 +233,23 @@ public class LeaveTypesViewModel extends AndroidViewModel {
                 0,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Helper.getInstance(ctx).addToRequestQueue(stringRequest);
+    }
+
+    public ArrayList<LeaveType> leaveTypesFallback () {
+
+        ArrayList<LeaveType> innerList = new ArrayList<LeaveType>();
+
+        innerList.add(new LeaveType(0,"BL","test"));
+        innerList.add(new LeaveType(0,"HSL","test"));
+        innerList.add(new LeaveType(0,"HVL","test"));
+        innerList.add(new LeaveType(0,"LSH","test"));
+        innerList.add(new LeaveType(0,"ML","test"));
+        innerList.add(new LeaveType(0,"PL","test"));
+        innerList.add(new LeaveType(0,"SL","test"));
+        innerList.add(new LeaveType(0,"SPL","test"));
+        innerList.add(new LeaveType(0,"VL","test"));
+
+
+        return innerList;
     }
 }

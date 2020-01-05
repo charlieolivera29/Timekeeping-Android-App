@@ -13,12 +13,13 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface UploadAPIs {
 
     @Multipart
     @POST("{fullUrl}")
-    Call<Result> uploadImage(
+    Call<Result> updateImage(
             @Path(value = "fullUrl", encoded = true) String fullUrl,
             @HeaderMap Map<String, String> headers,
             @Part("_method") RequestBody method,
@@ -55,5 +56,19 @@ public interface UploadAPIs {
             //@Part("sched_id") RequestBody sched_id,
 
             @Part("image") MultipartBody.Part image);
+
+
+    //Always use query
+    @Multipart
+    @POST("clock/api/time-entry-using-app-kiosk")
+    Call<Result> mobileTimeInApproval(
+            @Query("api_token") String api_token,
+            @Query("link") String link,
+            @HeaderMap Map<String, String> headers,
+            @Part("user_id") RequestBody user_id,
+            @Part("time") RequestBody time,
+            @Part("date") RequestBody date,
+            @Part("reference") RequestBody reference,
+            @Part MultipartBody.Part image);
 }
 

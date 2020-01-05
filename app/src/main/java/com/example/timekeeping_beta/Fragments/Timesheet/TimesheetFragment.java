@@ -2,11 +2,13 @@ package com.example.timekeeping_beta.Fragments.Timesheet;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.timekeeping_beta.Fragments.GlobalSettings.LeaveTypes.LeaveTypesViewModel;
 import com.example.timekeeping_beta.Globals.CustomClasses.OnSwipeTouchListener;
 import com.example.timekeeping_beta.Globals.Helper;
 import com.example.timekeeping_beta.R;
@@ -113,6 +116,7 @@ public class TimesheetFragment extends Fragment {
         if (getActivity() != null) {
             getActivity().setTitle(getResources().getString(R.string.title_fragment_timesheet));
         }
+
 
         return v;
     }
@@ -492,4 +496,5 @@ public class TimesheetFragment extends Fragment {
 
         return converted_date;
     }
+
 }

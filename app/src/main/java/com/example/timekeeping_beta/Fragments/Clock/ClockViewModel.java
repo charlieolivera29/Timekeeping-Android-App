@@ -3,6 +3,7 @@ package com.example.timekeeping_beta.Fragments.Clock;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.android.volley.Request;
@@ -11,6 +12,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.timekeeping_beta.Fragments.Profile.Models.Result;
+import com.example.timekeeping_beta.Globals.CustomClasses.Interface.UploadAPIs;
 import com.example.timekeeping_beta.Globals.StaticData.URLs;
 import com.example.timekeeping_beta.Globals.Helper;
 import com.example.timekeeping_beta.Globals.Models.ApiResult;
@@ -21,8 +24,18 @@ import com.example.timekeeping_beta.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+
+import es.dmoral.toasty.Toasty;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ClockViewModel extends AndroidViewModel {
 
@@ -87,7 +100,7 @@ public class ClockViewModel extends AndroidViewModel {
                         String time_out = helper.convertToReadableTime(jo_msg.getString("time_out"));
                         int shift = jo_msg.getInt("shift");
 
-                        LiveEDTR.setValue(new EDTR(time_in, time_out, shift,""));
+                        LiveEDTR.setValue(new EDTR(time_in, time_out, shift, ""));
                     } else {
                         LiveEDTR.setValue(null);
                     }
@@ -137,7 +150,7 @@ public class ClockViewModel extends AndroidViewModel {
                         int shift = jo_msg.getInt("shift");
 
 
-                        LiveEDTR.setValue(new EDTR(time_in, time_out,shift,""));
+                        LiveEDTR.setValue(new EDTR(time_in, time_out, shift, ""));
                     } else {
                         LiveEDTR.setValue(null);
                     }
@@ -199,7 +212,7 @@ public class ClockViewModel extends AndroidViewModel {
                             shift = jo_msg2.getInt("shift");
                         }
 
-                        LiveEDTR.setValue(new EDTR(time_in, time_out,shift,date_in));
+                        LiveEDTR.setValue(new EDTR(time_in, time_out, shift, date_in));
                     } else {
                         LiveEDTR.setValue(null);
                     }
@@ -280,4 +293,69 @@ public class ClockViewModel extends AndroidViewModel {
 
         queue.add(requestTimeInOut);
     }
+
+    public void sendTimeInOutWithImage(MediaType fileType, final File originalFile) {
+
+        RequestBody user_id = RequestBody.create(MultipartBody.FORM, user.getUser_id());
+        RequestBody time = RequestBody.create(MultipartBody.FORM, helper.now());
+        RequestBody date = RequestBody.create(MultipartBody.FORM, helper.today());
+        RequestBody reference = RequestBody.create(MultipartBody.FORM, app.getBaseContext().getResources().getString(R.string.api_reference));
+
+
+        RequestBody filePart = RequestBody.create(
+                fileType,
+                originalFile
+        );
+
+        final MultipartBody.Part file = MultipartBody.Part.createFormData(
+                "image",
+                originalFile.getName(),
+                filePart
+        );
+
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl(URLs.ROOT_URL)
+                .addConverterFactory(GsonConverterFactory.create());
+        Retrofit retrofit = builder.build();
+
+        UploadAPIs client = retrofit.create(UploadAPIs.class);
+
+        HashMap<String, String> headers = new HashMap<String, String>();
+        headers.put("d", user.getC1());
+        headers.put("t", user.getC2());
+        headers.put("token", user.getToken());
+
+        final Context ctx = app.getBaseContext();
+
+        Call<Result> call = client.mobileTimeInApproval(user.getApi_token(), user.getLink(),
+                headers, user_id, time, date, reference, file);
+        call.enqueue(new Callback<Result>() {
+            @Override
+            public void onResponse(Call<Result> call, retrofit2.Response<Result> response) {
+
+                if (response.body() != null) {
+                    if (response.body().getStatus().equals("success")) {
+                        timeInOutResult.setValue(new ApiResult(true, "Success!"));
+                        check_edtr_entry();
+                    } else {
+                        timeInOutResult.setValue(new ApiResult(false, response.body().getMsg()));
+                    }
+
+                    originalFile.delete();
+                } else {
+                    timeInOutResult.setValue(new ApiResult(false, ctx.getResources().getString(R.string.api_request_failed)));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Result> call, Throwable t) {
+
+                timeInOutResult.setValue(new ApiResult(false, app.getBaseContext().getString(R.string.api_request_error)));
+            }
+        });
+    }
+
+
+
+
 }

@@ -577,6 +577,10 @@ public class MainActivity extends AppCompatActivity
 
                 || ContextCompat.checkSelfPermission(ctx,
                 Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+
+                || ContextCompat.checkSelfPermission(ctx,
+                Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
 
             // No explanation needed; request the permission
@@ -584,7 +588,8 @@ public class MainActivity extends AppCompatActivity
                     new String[]{
                             Manifest.permission.WRITE_EXTERNAL_STORAGE,
                             Manifest.permission.ACCESS_COARSE_LOCATION,
-                            Manifest.permission.ACCESS_FINE_LOCATION
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.CAMERA
                     },
                     PERMISSIONS
             );
@@ -818,4 +823,6 @@ public class MainActivity extends AppCompatActivity
         Dialog alert = alertDialogBuilder.create();
         alert.show();
     }
+
+
 }

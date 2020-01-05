@@ -340,7 +340,7 @@ public class HRDashboardFragment extends Fragment implements OnChartValueSelecte
 
                     if (topLates != null) {
 
-                        if (!topLates.isEmpty()) {
+                        if (!topLates.isEmpty() && !minutesLateChecker(topLates).isEmpty()) {
                             DashboardTopLateEmployees = minutesLateChecker(topLates);
                             setToBarChart();
                             whenSuccess();
@@ -539,12 +539,12 @@ public class HRDashboardFragment extends Fragment implements OnChartValueSelecte
         if (DashboardTopLateEmployees == null) {
             layout_empty_top_lates.setVisibility(View.VISIBLE);
             tv_head_bundee.setText("Empty!");
-            tv_body_bundee.setText("No one is late at the moment.");
+            tv_body_bundee.setText("No one is present at the moment.");
         }
         if (DashboardBundeeCount == null) {
             layout_empty_bundee.setVisibility(View.VISIBLE);
             tv_head_top_lates.setText("Empty!");
-            tv_body_top_lates.setText("No one is present at the moment.");
+            tv_body_top_lates.setText("No one is late at the moment.");
         }
 
         loadingScreen();
