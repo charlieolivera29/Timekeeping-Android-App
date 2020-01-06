@@ -1,5 +1,6 @@
 package com.example.timekeeping_beta.Fragments.Timesheet;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -39,14 +40,15 @@ public class TimesheetAdapter extends RecyclerView.Adapter<TimesheetAdapter.Time
     private LeaveTypesViewModel leaveTypesViewModel;
     private List<LeaveType> LeaveTypes;
 
-    public TimesheetAdapter(Context context, List<TimesheetItem> timesheetList) {
-        this.context = context;
+    public TimesheetAdapter(Activity activity, List<TimesheetItem> timesheetList) {
+        this.context = activity;
         this.helper = Helper.getInstance(context);
 
         timesheetnavigattion = ((FragmentActivity) context).findViewById(R.id.timesheetnavigattion);
         this.timesheetList = timesheetList;
 
-        leaveTypesViewModel = ViewModelProviders.of((FragmentActivity) context).get(LeaveTypesViewModel.class);
+        leaveTypesViewModel = ViewModelProviders.of((FragmentActivity) activity).get(LeaveTypesViewModel.class);
+        LeaveTypes = leaveTypesViewModel.leaveTypesFallback();
     }
 
     @NonNull
@@ -58,18 +60,19 @@ public class TimesheetAdapter extends RecyclerView.Adapter<TimesheetAdapter.Time
         timeSheetDetails = new Dialog(context);
         timeSheetDetails.setContentView(R.layout.dialog_timesheet_details);
 
-        leaveTypesViewModel.retrieveAllLeaveTypes();
 
-        if (leaveTypesViewModel.getLeaveTypes().getValue() != null) {
-            LeaveTypes = leaveTypesViewModel.getLeaveTypes().getValue();
-        } else {
-            leaveTypesViewModel.getLeaveTypes().observe((FragmentActivity) context, new Observer<List<LeaveType>>() {
-                @Override
-                public void onChanged(@Nullable List<LeaveType> i_leaveTypes) {
-                    LeaveTypes = i_leaveTypes;
-                }
-            });
-        }
+//        if (leaveTypesViewModel.getLeaveTypes().getValue() != null) {
+//            LeaveTypes = leaveTypesViewModel.getLeaveTypes().getValue();
+//        } else {
+//            leaveTypesViewModel.retrieveAllLeaveTypes();
+//
+//            leaveTypesViewModel.getLeaveTypes().observe((FragmentActivity) context, new Observer<List<LeaveType>>() {
+//                @Override
+//                public void onChanged(@Nullable List<LeaveType> i_leaveTypes) {
+//                    LeaveTypes = i_leaveTypes;
+//                }
+//            });
+//        }
 
         return timesheetView;
     }
@@ -290,6 +293,5 @@ public class TimesheetAdapter extends RecyclerView.Adapter<TimesheetAdapter.Time
 //        chart.animateY(1000);
 //        chart.invalidate();
 //    }
-
 
 }

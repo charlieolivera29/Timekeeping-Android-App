@@ -742,7 +742,7 @@ public class UserProfileFragment extends Fragment implements DialogInterface.OnD
         headers.put("t", user.getC2());
         headers.put("token", user.getToken());
 
-        Call<Result> call = client.uploadImage(URLs.USER_PROFILE_UPDATE + user.getUser_id(),
+        Call<Result> call = client.updateImage(URLs.USER_PROFILE_UPDATE + user.getUser_id(),
                 headers, method, email, fname, lname,
                 emp_num, cell_num, api_token, link, file);
         call.enqueue(new Callback<Result>() {

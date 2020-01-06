@@ -4,10 +4,12 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.location.Location
 import android.location.LocationManager
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.support.v4.app.Fragment
@@ -18,15 +20,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.webkit.MimeTypeMap
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.timekeeping_beta.Activities.ImageCapture
 import com.example.timekeeping_beta.Fragments.Clock.ClockViewModel
 import com.example.timekeeping_beta.Fragments.Clock.EDTR
+import com.example.timekeeping_beta.Globals.Helper
 import com.example.timekeeping_beta.Globals.Models.ApiResult
+import com.example.timekeeping_beta.Globals.Models.User
+import com.example.timekeeping_beta.Globals.SharedPrefManager
 import com.example.timekeeping_beta.R
 import es.dmoral.toasty.Toasty
+import okhttp3.MediaType
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.File
 
 class MobileTimeEntryFragment : Fragment() {
 
@@ -48,13 +57,20 @@ class MobileTimeEntryFragment : Fragment() {
     private lateinit var location: JSONArray
     private lateinit var dialog: Dialog
 
+    private lateinit var helper: Helper
+    private lateinit var user: User
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_mobile_time_entry, container, false)
 
+        helper = Helper.getInstance(v.context)
+        user = SharedPrefManager.getInstance(v.context).user
+
         clockViewModel = ViewModelProviders.of(this).get(ClockViewModel::class.java)
         LocationViewModel = ViewModelProviders.of(activity!!).get(com.example.timekeeping_beta.Fragments.MobileTimeEntry.LocationViewModel::class.java)
         dialog = Dialog(v.context)
+
+        checkPermission()
 
         return v
     }
@@ -62,7 +78,6 @@ class MobileTimeEntryFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        checkPermission()
     }
 
     private fun loadData() {
@@ -109,9 +124,10 @@ class MobileTimeEntryFragment : Fragment() {
 
                 if (it.status) {
                     Toasty.success(context!!, apiResult.message, Toasty.LENGTH_LONG).show()
-
+                    success()
                 } else {
                     Toasty.error(context!!, apiResult.message, Toasty.LENGTH_LONG).show()
+                    success()
                 }
             }
         })
@@ -123,7 +139,6 @@ class MobileTimeEntryFragment : Fragment() {
 
         locationManager = activity?.getSystemService(AppCompatActivity.LOCATION_SERVICE) as LocationManager?
         val location_not_enabled = !locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
-
 
         if (location_not_enabled) {
             showGPSDisabledAlertToUser()
@@ -151,8 +166,6 @@ class MobileTimeEntryFragment : Fragment() {
                 setLocationImage(ContextCompat.getDrawable(v.context, R.drawable.ic_my_location_valid_24dp),
                         "Location valid!",
                         ContextCompat.getColor(v.context, R.color.colorSuccess))
-
-
             } else {
 
                 setLocationImage(ContextCompat.getDrawable(v.context, R.drawable.ic_my_location_invalid_24dp),
@@ -179,12 +192,13 @@ class MobileTimeEntryFragment : Fragment() {
         }
     }
 
+    private lateinit var clockDialog: Dialog
 
     fun eDTRDialog() {
 
 
         if (::edtr.isInitialized && userIsNearLocation) {
-            val clockDialog = Dialog(context!!)
+            clockDialog = Dialog(context!!)
             clockDialog.setContentView(R.layout.dialog_clock_in_out)
 
             val tv_confirm_question = clockDialog.findViewById<TextView>(R.id.tv_confirm_question)
@@ -282,13 +296,31 @@ class MobileTimeEntryFragment : Fragment() {
 
 
             cv_send.setOnClickListener {
-                loading()
-                clockDialog.dismiss()
-                clockViewModel.sendTimeInOut()
+
+                val takepicture = true
+
+                if (!takepicture) {
+                    loading()
+                    clockDialog.dismiss()
+                    clockViewModel.sendTimeInOut()
+                } else {
+                    val act = activity
+
+                    if (act != null) {
+                        val camera_intent = Intent(act, ImageCapture::class.java)
+                        camera_intent.putExtra("Name", user.fname.plus(" ").plus(user.lname))
+                        camera_intent.putExtra("Date", helper.today())
+                        camera_intent.putExtra("Time", helper.now())
+
+                        startActivityForResult(camera_intent, IMAGE_CAPTURE_REQUEST_CODE)
+                    }
+                }
             }
         }
 
     }
+
+    private val IMAGE_CAPTURE_REQUEST_CODE = 1997
 
 
     fun showGPSDisabledAlertToUser() {
@@ -375,4 +407,26 @@ class MobileTimeEntryFragment : Fragment() {
     fun success() {
         if (dialog.isShowing) dialog.dismiss()
     }
+
+    private var originalFile: File? = null
+    private var fileType: MediaType? = null
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == IMAGE_CAPTURE_REQUEST_CODE && resultCode == AppCompatActivity.RESULT_OK) {
+
+            if (data != null) {
+                val stringPath = data.getSerializableExtra("URI").toString()
+
+                originalFile = File(stringPath)
+                fileType = MediaType.parse("image/jpeg")
+
+                loading()
+                clockDialog.dismiss()
+                clockViewModel.sendTimeInOutWithImage(fileType, originalFile)
+            }
+        }
+    }
+
 }
