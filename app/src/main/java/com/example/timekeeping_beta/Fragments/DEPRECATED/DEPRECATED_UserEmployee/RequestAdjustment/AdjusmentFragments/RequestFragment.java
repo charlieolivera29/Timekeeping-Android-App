@@ -69,32 +69,20 @@ public class RequestFragment extends Fragment implements AdapterView.OnItemSelec
     private final URLs url = new URLs();
     public Spinner spinnerDayType;
 
-    private String converted_date = "";
-    private String date_from_timesheet = "";
+    private String converted_date = "", date_from_timesheet = "";
     private RequestQueue queue;
 
-    private TextView txtShiftIn;
-    private TextView txtShiftOut;
-    private TextView txtTimeIn;
-    private TextView txtTimeOut;
-    private TextView txtReference;
-    private TextView txtDayType;
+    private TextView txtShiftIn, txtShiftOut, txtTimeIn,
+            txtTimeOut, txtReference, txtDayType;
 
-    private LinearLayout timesheetInfoLayout;
 
-    private String shift_in;
-    private String shift_out;
-    private String reference;
-    private String time_in;
-    private String time_out;
-    private String day_type;
+    private String shift_in, shift_out, reference, time_in, time_out, day_type;
 
     private DatePickerFragment datePicker;
-    private LinearLayout timesheetnavigattion;
+    private LinearLayout timesheetnavigattion, timesheetInfoLayout;
 
-    public TextView txtCalendar, txt_date_from_timesheet;
-
-    TextView txtAdjustedTimeIn, txtAdjustedTimeOut;
+    public TextView txtCalendar, txt_date_from_timesheet, txtAdjustedTimeIn,
+            txtAdjustedTimeOut;
 
     //private String specific_date = "";
     private String readable_specific_date = "";
@@ -248,6 +236,7 @@ public class RequestFragment extends Fragment implements AdapterView.OnItemSelec
 
                         String string_start_time = sh + ":" + st;
 
+                        time_in_tbs = string_start_time;
                         txtAdjustedTimeIn.setText(Helper.getInstance(ctx).convertToReadableTime(string_start_time));
                     }
                 }, hour, minute, false);//Yes 24 hour time
@@ -277,6 +266,7 @@ public class RequestFragment extends Fragment implements AdapterView.OnItemSelec
 
                         String string_start_time = sh + ":" + st;
 
+                        time_out_tbs = string_start_time;
                         txtAdjustedTimeOut.setText(Helper.getInstance(ctx).convertToReadableTime(string_start_time));
                     }
                 }, hour, minute, false);//Yes 24 hour time
@@ -404,10 +394,10 @@ public class RequestFragment extends Fragment implements AdapterView.OnItemSelec
                     JSONObject obj = new JSONObject(response);
                     JSONObject msg_obj = obj.getJSONObject("msg");
 
-                    if (msg_obj.getBoolean("isbroken")){
+                    if (msg_obj.getBoolean("isbroken")) {
                         tr_shift_container.setVisibility(View.VISIBLE);
 
-                        ArrayList<String> shiftOptions  =  new ArrayList<>();
+                        ArrayList<String> shiftOptions = new ArrayList<>();
                         shiftOptions.add("1");
                         shiftOptions.add("2");
 
@@ -503,10 +493,16 @@ public class RequestFragment extends Fragment implements AdapterView.OnItemSelec
         queue.add(requestTimesheet);
     }
 
+    private String time_in_tbs = "";
+    private String time_out_tbs = "";
+
     public void validateRequest() {
 
-        final String timeIn = reConvertTime(txtAdjustedTimeIn.getText().toString());
-        final String timeOut = reConvertTime(txtAdjustedTimeOut.getText().toString());
+        //final String timeIn = reConvertTime(txtAdjustedTimeIn.getText().toString());
+        //final String timeOut = reConvertTime(txtAdjustedTimeOut.getText().toString());
+        final String timeIn = time_in_tbs;
+        final String timeOut = time_out_tbs;
+
         final String reason = txtAdjustedReason.getText().toString();
         final String day_type = spinnerDayType.getSelectedItem().toString();
         final String date_in = !converted_date.isEmpty() ? converted_date : date_from_timesheet;
@@ -590,13 +586,13 @@ public class RequestFragment extends Fragment implements AdapterView.OnItemSelec
             }
         };
 
-        requestAdjustment.setRetryPolicy(new DefaultRetryPolicy(60 * 1000,
+        requestAdjustment.setRetryPolicy(new DefaultRetryPolicy(
+                60 * 1000,
                 0,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         queue.add(requestAdjustment);
     }
-
 
     private void clearForm() {
         TextView txtAdjustedDate = v.findViewById(R.id.txt_date_calendar);

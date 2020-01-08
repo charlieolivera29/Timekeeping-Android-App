@@ -23,9 +23,9 @@
 
 
         <android.support.v4.widget.NestedScrollView
-            android:fillViewport="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <android.support.v7.widget.CardView
                 android:id="@+id/anchr_pie_chart_container"
@@ -54,32 +54,44 @@
                             android:textSize="@dimen/h4"
                             android:textStyle="bold" />
 
-
-                        <LinearLayout
-                            android:id="@+id/ll_toggle_filter"
+                        <android.support.v7.widget.CardView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
-                            android:orientation="horizontal">
+                            android:layout_marginTop="1dp"
+                            android:layout_marginEnd="1dp"
+                            android:layout_marginRight="1dp"
+                            android:layout_marginBottom="@dimen/margin_sm"
+                            app:cardElevation="@dimen/cardview_default_elevation">
 
-                            <TextView
+                            <LinearLayout
+                                android:padding="@dimen/margin_xs"
+                                android:id="@+id/ll_toggle_filter"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginEnd="@dimen/margin_sm"
-                                android:layout_marginRight="@dimen/margin_sm"
-                                android:text="Filter"
-                                android:textColor="@color/colorBlack"
-                                android:textSize="@dimen/h6" />
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:orientation="horizontal">
 
-                            <ImageView
-                                android:id="@+id/iv_toggle_filter"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="end"
-                                android:src="@drawable/ic_filter_list_black_24dp" />
-                        </LinearLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginEnd="@dimen/margin_sm"
+                                    android:layout_marginRight="@dimen/margin_sm"
+                                    android:text="Filter"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="@dimen/h6" />
+
+                                <ImageView
+                                    android:id="@+id/iv_toggle_filter"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="end"
+                                    android:src="@drawable/ic_filter_list_black_24dp" />
+                            </LinearLayout>
+                        </android.support.v7.widget.CardView>
 
                     </RelativeLayout>
 
@@ -288,6 +300,7 @@
 
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/cv_attendance_percentage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_sm"
@@ -392,6 +405,7 @@
                         <TableRow>
 
                             <android.support.v7.widget.CardView
+                                android:id="@+id/cv_total_lates"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/margin_sm"
@@ -452,6 +466,7 @@
                             </android.support.v7.widget.CardView>
 
                             <android.support.v7.widget.CardView
+                                android:id="@+id/cv_total_overtime"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/margin_xs"
