@@ -731,7 +731,7 @@ public class UserProfileFragment extends Fragment implements DialogInterface.OnD
         );
 
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl(URLs.ROOT_URL)
+                        .baseUrl(URLs.ROOT_URL)
                 .addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit = builder.build();
 
