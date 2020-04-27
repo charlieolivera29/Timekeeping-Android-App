@@ -707,7 +707,14 @@ public class MainActivity extends AppCompatActivity
             String version = "version " + Static.APP_VERSION;
             tv_version_id.setText(version);
             about_us_dialog.show();
-        } else if (id == R.id.btnLogout) {
+        }
+
+        else if (id == R.id.btnMyProfile) {
+
+            changeFragment("USER_PROFILE_FRAGMENT", new UserProfileFragment());
+        }
+
+        else if (id == R.id.btnLogout) {
             DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
