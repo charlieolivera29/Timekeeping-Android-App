@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.CardView
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.webkit.MimeTypeMap
@@ -84,6 +85,8 @@ class MobileTimeEntryFragment : Fragment() {
 
         loading()
         validateUserEDTR()
+        //getLocationTest()
+
         getLocation()
     }
 
@@ -149,16 +152,30 @@ class MobileTimeEntryFragment : Fragment() {
 
     private var userIsNearLocation = false
 
+    private fun getLocationTest() {
+
+        location_status = v.findViewById(R.id.location_status)
+        tv_location_message = v.findViewById(R.id.tv_location_message)
+        location_status.visibility = GONE
+
+        userIsNearLocation = true
+
+//        setLocationImage(ContextCompat.getDrawable(v.context, R.drawable.ic_my_location_valid_24dp),
+//                "Location valid!",
+//                ContextCompat.getColor(v.context, R.color.colorSuccess))
+    }
+
+
     private fun getLocation() {
 
         location_status = v.findViewById(R.id.location_status)
         tv_location_message = v.findViewById(R.id.tv_location_message)
+
         LocationViewModel.startLocationListener()
 
         LocationViewModel.currentLocation.observe(activity!!, Observer {
 
             location = it!!
-
             userIsNearLocation = userIsNearLocation(it!!)
 
             if (userIsNearLocation) {
@@ -297,7 +314,8 @@ class MobileTimeEntryFragment : Fragment() {
 
             cv_send.setOnClickListener {
 
-                val takepicture = true
+                //Not be used
+                val takepicture = false
 
                 if (!takepicture) {
                     loading()

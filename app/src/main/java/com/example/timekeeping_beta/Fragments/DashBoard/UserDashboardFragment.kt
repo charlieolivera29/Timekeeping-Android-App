@@ -18,17 +18,18 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.*
+import com.example.timekeeping_beta.Fragments.Clock.ClockViewModel
+import com.example.timekeeping_beta.Fragments.Clock.EDTR
+import com.example.timekeeping_beta.Fragments.DEPRECATED.DEPRECATED_UserEmployee.RequestEDTR.TimesheetEntryFragment
 import com.example.timekeeping_beta.Fragments.DashBoard.Models.DashboardAttendance
 import com.example.timekeeping_beta.Fragments.DashBoard.Models.DashboardCount
 import com.example.timekeeping_beta.Fragments.HRAdmin.Dashboard.HRDashboardEmployeeList
 import com.example.timekeeping_beta.Fragments.MobileTimeEntry.MobileTimeEntryFragment
+import com.example.timekeeping_beta.Fragments.Timesheet.TimesheetFragment
 import com.example.timekeeping_beta.Fragments.UserApprover.Adjustment.AdjustmentsUpdateFragmentv2
 import com.example.timekeeping_beta.Fragments.UserApprover.EDTR.EDTRUpdateFragmentv2
 import com.example.timekeeping_beta.Fragments.UserApprover.Leave.LeaveUpdateFragmentv2
 import com.example.timekeeping_beta.Fragments.UserApprover.Overtime.OvertimeUpdateFragmentv2
-import com.example.timekeeping_beta.Fragments.Clock.ClockViewModel
-import com.example.timekeeping_beta.Fragments.Clock.EDTR
-import com.example.timekeeping_beta.Fragments.DEPRECATED.DEPRECATED_UserEmployee.RequestEDTR.TimesheetEntryFragment
 import com.example.timekeeping_beta.Fragments.UserEmployee.Adjustments.AdjustmentsFragment
 import com.example.timekeeping_beta.Fragments.UserEmployee.Leaves.LeavesFragment
 import com.example.timekeeping_beta.Fragments.UserEmployee.Overtimes.OvertimeFragment
@@ -108,6 +109,10 @@ class UserDashboardFragment : Fragment() {
     private lateinit var link_pending_edtr_approvals: FrameLayout
     private lateinit var link_pending_time_adjustment_approvals: FrameLayout
 
+    private lateinit var cv_attendance_percentage: CardView
+    private lateinit var cv_total_lates: CardView
+    private lateinit var cv_total_overtime: CardView
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v = inflater.inflate(R.layout.fragment_dashboard_user, container, false)
@@ -178,6 +183,11 @@ class UserDashboardFragment : Fragment() {
 
         tv_cancel = filterDialog.findViewById(R.id.tv_cancel)
         tv_filter = filterDialog.findViewById(R.id.tv_filter)
+
+
+        cv_attendance_percentage = v.findViewById(R.id.cv_attendance_percentage);
+        cv_total_lates = v.findViewById(R.id.cv_total_lates);
+        cv_total_overtime = v.findViewById(R.id.cv_total_overtime);
     }
 
     private fun validateUserAccess() {
@@ -510,6 +520,24 @@ class UserDashboardFragment : Fragment() {
         link_pending_approvals_overtime.setOnClickListener { addFragmentToContainer("OvertimeUpdateFragmentv2", OvertimeUpdateFragmentv2()) }
         link_pending_edtr_approvals.setOnClickListener { addFragmentToContainer("EDTRUpdateFragmentv2", EDTRUpdateFragmentv2()) }
         link_pending_time_adjustment_approvals.setOnClickListener { addFragmentToContainer("AdjustmentsUpdateFragmentv2", AdjustmentsUpdateFragmentv2()) }
+
+        cv_attendance_percentage.setOnClickListener {
+            //Toasty.info(ctx,"This card shows the percentage of your attendance. Results may vary depending on the filter you set",Toasty.LENGTH_LONG).show()
+
+            //Adds to backstack
+            val act = activity
+
+            if (act != null) {
+                act.getSupportFragmentManager()
+                        .beginTransaction()
+                        .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out) //.setCustomAnimations(R.anim.slide_up, R.anim.slide_bottom)
+                        .add(R.id.fragment_container, TimesheetFragment(), "TimesheetFragment")
+                        .addToBackStack("TimesheetFragment")
+                        .commit()
+            }
+        }
+        cv_total_lates.setOnClickListener { Toasty.info(ctx, "This card shows your lates in hours. Results may vary depending on the filter you set", Toasty.LENGTH_LONG).show() }
+        cv_total_overtime.setOnClickListener { Toasty.info(ctx, "This card shows your overtime in hours. Results may vary depending on the filter you set", Toasty.LENGTH_LONG).show() }
     }
 
     private fun addFragmentToContainer(fragment_name: String, fragment: Fragment) {
@@ -581,7 +609,6 @@ class UserDashboardFragment : Fragment() {
             endDate.show()
         }
     }
-
 
     private fun loadDashboardData(date_start: String, date_end: String, day_type: String, user_type: String) {
 

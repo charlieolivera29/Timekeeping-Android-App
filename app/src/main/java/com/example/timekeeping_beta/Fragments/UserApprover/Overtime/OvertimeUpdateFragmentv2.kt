@@ -73,6 +73,7 @@ class OvertimeUpdateFragmentv2 : Fragment() {
 
         tv_no_data = v.findViewById(R.id.tv_no_data)
         fab_make_request = v.findViewById(R.id.fab_make_request)
+        fab_make_request.visibility = GONE
         bvn_navigation_overtimes = v.findViewById(R.id.bvn_navigation_overtimes)
         srl_refresh = v.findViewById(R.id.srl_refresh)
 
@@ -180,13 +181,6 @@ class OvertimeUpdateFragmentv2 : Fragment() {
             loadData(status, search, page, show)
         }
 
-        fab_make_request.setOnClickListener {
-            fragmentManager!!
-                    .beginTransaction().add(R.id.fragment_container, RequestFragment(), "RequestFragment")
-                    .addToBackStack("RequestFragment")
-                    .commit()
-
-        }
     }
 
     private val navListener = BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
