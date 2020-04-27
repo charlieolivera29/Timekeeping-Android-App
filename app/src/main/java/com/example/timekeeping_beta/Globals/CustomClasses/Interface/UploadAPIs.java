@@ -61,7 +61,7 @@ public interface UploadAPIs {
     //Always use query
     @Multipart
     @POST("clock/api/time-entry-using-app-kiosk")
-    Call<Result> mobileTimeInApproval(
+        Call<Result> mobileTimeInApproval(
             @Query("api_token") String api_token,
             @Query("link") String link,
             @HeaderMap Map<String, String> headers,

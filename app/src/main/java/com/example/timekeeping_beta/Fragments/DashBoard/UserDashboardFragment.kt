@@ -493,6 +493,7 @@ class UserDashboardFragment : Fragment() {
             filterDialog.show()
         }
 
+
         tv_cancel.setOnClickListener {
             filterDialog.dismiss()
         }

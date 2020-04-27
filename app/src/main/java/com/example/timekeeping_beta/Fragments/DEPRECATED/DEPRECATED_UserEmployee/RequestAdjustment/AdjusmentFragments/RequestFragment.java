@@ -76,7 +76,19 @@ public class RequestFragment extends Fragment implements AdapterView.OnItemSelec
             txtTimeOut, txtReference, txtDayType;
 
 
-    private String shift_in, shift_out, reference, time_in, time_out, day_type;
+    private String shift_in,
+            shift_out,
+            reference,
+            time_in,
+            time_out,
+            day_type,
+    // Edit Schedule Update
+    // March 31 ,2020
+    //Added params
+    old_time_in,
+            old_time_out,
+            old_day_type;
+    private Boolean edit_sched = true,isBroken = true;
 
     private DatePickerFragment datePicker;
     private LinearLayout timesheetnavigattion, timesheetInfoLayout;
@@ -392,9 +404,14 @@ public class RequestFragment extends Fragment implements AdapterView.OnItemSelec
 
                 try {
                     JSONObject obj = new JSONObject(response);
-                    JSONObject msg_obj = obj.getJSONObject("msg");
+                    JSONObject msg = obj.getJSONObject("msg");
 
-                    if (msg_obj.getBoolean("isbroken")) {
+                    JSONObject edtr_obj = msg.getJSONObject("edtr");
+                    JSONObject schedule_object = msg.getJSONObject("schedule");
+
+                    if (msg.has("isbroken") && msg.getBoolean("isbroken")) {
+
+                        isBroken = msg.getBoolean("isbroken");
                         tr_shift_container.setVisibility(View.VISIBLE);
 
                         ArrayList<String> shiftOptions = new ArrayList<>();
@@ -419,22 +436,41 @@ public class RequestFragment extends Fragment implements AdapterView.OnItemSelec
                     }
 
 
-                    if (msg_obj.has("reference") && !msg_obj.getString("reference").equals("null")) {
-                        reference = msg_obj.getString("reference");
-                        shift_in = msg_obj.getString("shift_in");
-                        shift_out = msg_obj.getString("shift_out");
-                        time_in = msg_obj.getString("time_in");
-                        time_out = msg_obj.getString("time_out");
-                        day_type = msg_obj.getString("day_type");
+                    // Edit Schedule Update
+                    // March 31 ,2020
+                    //                    if (edtr_obj.has("reference") && !edtr_obj.getString("reference").equals("null")) {
+//                        reference = edtr_obj.getString("reference");
+//                        shift_in = edtr_obj.getString("shift_in");
+//                        shift_out = edtr_obj.getString("shift_out");
+//                        time_in = edtr_obj.getString("time_in");
+//                        time_out = edtr_obj.getString("time_out");
+//                        day_type = edtr_obj.getString("day_type");
+//
+//                    } else {
+//                        reference = getResources().getString(R.string.api_reference);
+//                        shift_in = "";
+//                        shift_out = "";
+//                        time_in = "";
+//                        time_out = "";
+//                        day_type = "";
+//                    }
 
-                    } else {
-                        reference = getResources().getString(R.string.api_reference);
-                        shift_in = "";
-                        shift_out = "";
-                        time_in = "";
-                        time_out = "";
-                        day_type = "";
-                    }
+                    reference = edtr_obj.has("reference") && !edtr_obj.getString("reference").equals("null") ?
+                            edtr_obj.getString("reference") :
+                            getResources().getString(R.string.api_reference);
+                    shift_in = schedule_object.getString("shift_in");
+                    shift_out = schedule_object.getString("shift_out");
+                    time_in = edtr_obj.getString("time_in");
+                    time_out = edtr_obj.getString("time_out");
+                    day_type = edtr_obj.getString("day_type");
+
+                    // Edit Schedule Update
+                    // March 31 ,2020
+                    old_time_in = edtr_obj.has("old_time_in") ? edtr_obj.getString("old_time_in") : "";
+                    old_time_out = edtr_obj.has("old_time_out") ? edtr_obj.getString("old_time_out") : "";
+                    old_day_type = edtr_obj.has("old_day_type") ? edtr_obj.getString("old_day_type") : "";
+                    edit_sched = edtr_obj.has("edit_sched") ? edtr_obj.getBoolean("edit_sched") : false;
+
 
                     timeAdjustment.setShift_in(shift_in);
                     timeAdjustment.setShift_out(shift_out);
@@ -460,6 +496,7 @@ public class RequestFragment extends Fragment implements AdapterView.OnItemSelec
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Log.d("ShowTimesheet", e.toString());
                 }
             }
         }, new Response.ErrorListener() {
@@ -485,6 +522,7 @@ public class RequestFragment extends Fragment implements AdapterView.OnItemSelec
                 Map<String, String> params = new HashMap<>();
                 params.put("user_id", USER_ID);
                 params.put("date_in", date_in);
+                params.put("shift", "0");
 
                 return params;
             }
@@ -528,6 +566,8 @@ public class RequestFragment extends Fragment implements AdapterView.OnItemSelec
         final ProgressDialog loadingScreenDialog = ProgressDialog.show(ctx, null, "Sending Request...");
         final String url_adjustment_request = url.url_timesheet_adjustment(user.getApi_token(), user.getLink());
 
+        Log.d("ShowTimesheet", url_adjustment_request);
+
         StringRequest requestAdjustment = new StringRequest(Request.Method.POST, url_adjustment_request, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -546,12 +586,16 @@ public class RequestFragment extends Fragment implements AdapterView.OnItemSelec
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Log.d("ShowTimesheet", e.toString());
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toasty.error(ctx, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                Log.d("ShowTimesheet", error.toString());
+
                 loadingScreenDialog.dismiss();
             }
         }) {
@@ -571,6 +615,7 @@ public class RequestFragment extends Fragment implements AdapterView.OnItemSelec
 
                 JSONObject jsonBody = new JSONObject();
                 try {
+                    jsonBody.put("user_id", user.getUser_id());
                     jsonBody.put("date_in", date_in);
                     jsonBody.put("day_type", i_day_type);
                     jsonBody.put("reason", reason);
@@ -578,9 +623,24 @@ public class RequestFragment extends Fragment implements AdapterView.OnItemSelec
                     jsonBody.put("shift", shift);
                     jsonBody.put("time_in", timeIn);
                     jsonBody.put("time_out", timeOut);
-                    jsonBody.put("user_id", user.getUser_id());
+
+                    // Edit Schedule Update
+                    // March 31 ,2020
+                    //Added params
+                    jsonBody.put("old_time_in", old_time_in);
+                    jsonBody.put("old_time_out", old_time_out);
+                    jsonBody.put("old_day_type", !old_day_type.isEmpty() ? old_day_type.isEmpty() : "ABSENT" );
+                    jsonBody.put("shift_in", shift_in);
+                    jsonBody.put("shift_out", shift_out);
+                    jsonBody.put("edit_sched", edit_sched);
+                    jsonBody.put("isBroken", isBroken.toString());
+
+                    Log.d("ShowTimesheet", jsonBody.toString());
+
                 } catch (JSONException e) {
                     e.printStackTrace();
+
+                    Log.d("ShowTimesheet", e.toString());
                 }
                 return jsonBody.toString().getBytes(Charset.forName("UTF-8"));
             }

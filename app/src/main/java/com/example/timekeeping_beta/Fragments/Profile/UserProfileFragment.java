@@ -239,10 +239,16 @@ public class UserProfileFragment extends Fragment implements DialogInterface.OnD
 
                 String url_user_img = URLs.url_image(user.getCompany(), userProfileItem.getUser_image());
 
-                fname.setHint(userProfileItem.getFname());
-                lname.setHint(userProfileItem.getLname());
-                dialog_email.setHint(userProfileItem.getEmail());
-                cell_num.setHint(userProfileItem.getCell_num());
+
+//                fname.setHint(userProfileItem.getFname());
+//                lname.setHint(userProfileItem.getLname());
+//                dialog_email.setHint(userProfileItem.getEmail());
+//                cell_num.setHint(userProfileItem.getCell_num());
+
+                fname.setText(userProfileItem.getFname());
+                lname.setText(userProfileItem.getLname());
+                dialog_email.setText(userProfileItem.getEmail());
+                cell_num.setText(userProfileItem.getCell_num());
 
                 userProfileDialog.show();
             }
@@ -327,6 +333,9 @@ public class UserProfileFragment extends Fragment implements DialogInterface.OnD
     }
 
     private void loadMyProfile() {
+
+        Log.d("load_profile","yes");
+
         final ProgressDialog dialog = ProgressDialog.show(getActivity(), null, "Please Wait...");
         dialog.show();
         queue = Volley.newRequestQueue(getActivity().getApplicationContext());
@@ -347,7 +356,6 @@ public class UserProfileFragment extends Fragment implements DialogInterface.OnD
                     for (int i = 0; i < usr_pro_count.length(); i++) {
                         JSONObject profile_data = usr_pro_count.getJSONObject(i);
 
-                        // class userProfileItem
                         userProfileItem = new UserProfileItem();
 
                         // Get the data from the json object
@@ -731,7 +739,7 @@ public class UserProfileFragment extends Fragment implements DialogInterface.OnD
         );
 
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl(URLs.ROOT_URL)
+                        .baseUrl(URLs.ROOT_URL)
                 .addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit = builder.build();
 
