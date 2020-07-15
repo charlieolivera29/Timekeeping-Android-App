@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="Profile"/>
+
+    <item
+        android:id="@+id/nav_password"
+        android:icon="@drawable/ic_lock_black_24dp"
+        android:title="Password"/>
+
+    <item
+        android:id="@+id/nav_pin"
+        android:icon="@drawable/ic_dialpad_black_24dp"
+        android:title="PIN"/>
+</menu>

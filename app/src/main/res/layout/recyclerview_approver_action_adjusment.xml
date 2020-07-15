@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/rvi_adjustment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_lg"
+        android:layout_marginRight="@dimen/margin_lg"
+        android:layout_marginBottom="@dimen/margin_sm"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0.0px"
+        app:cardCornerRadius="@dimen/cardview_radius"
+        app:cardPreventCornerOverlap="false"
+        app:elevation="@dimen/cardview_elevation">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_lg"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/rvi_adjustment_avatar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="top"
+                    android:layout_marginStart="@dimen/margin_xs"
+                    android:layout_marginLeft="@dimen/margin_xs"
+                    android:layout_marginEnd="@dimen/margin_sm"
+                    android:layout_marginRight="@dimen/margin_sm"
+                    android:background="@color/colorWhite"
+                    android:contentDescription="TODO"
+                    android:src="@drawable/ic_person_black_24dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/rvi_employee_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sample_name"
+                        android:textColor="#000"
+                        android:textSize="@dimen/h5"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/rvi_adjustment_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- - -"
+                            android:textColor="#000"
+                            android:textSize="@dimen/h6" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" ("
+                                android:textColor="#000"
+                                android:textSize="@dimen/h6" />
+
+                            <TextView
+                                android:id="@+id/adjustment_request_day_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="---"
+                                android:textColor="#000"
+                                android:textSize="@dimen/h6"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text=")"
+                                android:textColor="#000"
+                                android:textSize="@dimen/h6" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_xs"
+                            android:layout_marginRight="@dimen/margin_xs"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/original_time_title_container"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Original:"
+                                android:textSize="@dimen/h6" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Requested:"
+                                android:textSize="@dimen/h6" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                            <LinearLayout
+                                android:id="@+id/original_time_container"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/rvi_original_time_in"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/blank_time"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="@dimen/h6"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=" - "
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="@dimen/h6"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/rvi_original_time_out"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/blank_time"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="@dimen/h6"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/rvi_adjustment_time_in"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/blank_time"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="@dimen/h6"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=" - "
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="@dimen/h6"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/rvi_adjustment_time_out"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/blank_time"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="@dimen/h6"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_xs"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/tv_time_in_output"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Schedule"
+                                android:textColor="#000"
+                                android:textSize="@dimen/h5" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/rvi_decline_reason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_sm"
+                android:layout_marginBottom="@dimen/margin_sm"
+                android:hint="Decline Reason"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLines="3"
+                android:textSize="@dimen/h6"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_sm"
+                android:layout_marginBottom="@dimen/margin_sm"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/rvi_adjustment_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/m6"
+                    android:layout_marginRight="@dimen/m6"
+                    app:cardBackgroundColor="@color/colorPending"
+                    app:cardCornerRadius="@dimen/margin_lg">
+
+                    <TextView
+                        android:id="@+id/rvi_adjustment_text_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/m6"
+                        android:layout_marginTop="@dimen/margin_xs"
+                        android:layout_marginRight="@dimen/m6"
+                        android:layout_marginBottom="@dimen/margin_xs"
+                        android:text="Pending"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/h6" />
+                </android.support.v7.widget.CardView>
+
+                <LinearLayout
+                    android:id="@+id/rvi_approver_pending_options"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <android.support.design.card.MaterialCardView
+                            android:id="@+id/rvi_back_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_sm"
+                            android:layout_marginRight="@dimen/margin_sm"
+                            android:visibility="gone"
+                            app:cardBackgroundColor="@color/colorWhite"
+                            app:cardCornerRadius="@dimen/margin_sm"
+                            app:strokeColor="@color/colorBlack"
+                            app:strokeWidth="@dimen/recyclerview_margin">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/m6"
+                                android:layout_marginRight="@dimen/m6"
+                                android:contentDescription="TODO"
+                                android:src="@drawable/ic_arrow_back_black_24dp" />
+                        </android.support.design.card.MaterialCardView>
+
+                        <android.support.design.card.MaterialCardView
+                            android:id="@+id/rvi_decline_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_sm"
+                            android:layout_marginRight="@dimen/margin_sm"
+                            app:cardBackgroundColor="@color/colorWhite"
+                            app:cardCornerRadius="@dimen/margin_lg"
+                            app:strokeColor="@color/colorError"
+                            app:strokeWidth="@dimen/recyclerview_margin">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/m6"
+                                android:layout_marginRight="@dimen/m6"
+                                android:contentDescription="TODO"
+                                android:src="@drawable/ic_decline_icon_24dp" />
+                        </android.support.design.card.MaterialCardView>
+
+                        <android.support.design.card.MaterialCardView
+                            android:id="@+id/rvi_approve_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:cardBackgroundColor="@color/colorWhite"
+                            app:cardCornerRadius="@dimen/margin_lg"
+                            app:strokeColor="@color/colorSuccess"
+                            app:strokeWidth="@dimen/recyclerview_margin">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/m6"
+                                android:layout_marginRight="@dimen/m6"
+                                android:contentDescription="TODO"
+                                android:src="@drawable/ic_approve_icon_24dp" />
+                        </android.support.design.card.MaterialCardView>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

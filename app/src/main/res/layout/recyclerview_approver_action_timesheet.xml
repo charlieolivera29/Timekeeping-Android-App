@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    android:padding="2dp"
+    android:background="@color/colorWhiteSmoke">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/rvi_timesheet_adjustment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardElevation="3dp"
+        app:cardMaxElevation="5dp">
+
+        <FrameLayout
+            android:id="@+id/rvi_timesheet_adjustment_status"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorSuccess"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:weightSum="5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/rvi_employee_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="Error!"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/rvi_employee_schedule"
+                    android:layout_weight="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="N/A"
+                    android:gravity="center_horizontal|center_vertical" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:weightSum="3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/rvi_timesheet_adjustment_time_in"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="--:--:-- --"
+                    android:gravity="center_horizontal|center_vertical" />
+                <TextView
+                    android:id="@+id/rvi_timesheet_adjustment_time_out"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="--:--:-- --"
+                    android:gravity="center_horizontal|center_vertical" />
+                <TextView
+                    android:id="@+id/rvi_timesheet_adjustment_date"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="YYYY-MM-DD"
+                    android:gravity="center_horizontal|center_vertical" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

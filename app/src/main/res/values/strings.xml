@@ -1,0 +1,143 @@
+<resources>
+    <string name="app_name">Timekeeping</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_dashboard">Dashboard</string>
+    <string name="menu_timesheet">My Timesheet</string>
+
+    <string name="menu_clock">Clock in</string>
+    <string name="menu_timesheet_request">Timesheet Entry</string>
+    <string name="menu_adjustment_request">Adjustment Request</string>
+    <string name="menu_overtime_request">Overtime Request</string>
+    <string name="menu_leave_request">Leave Request</string>
+
+    <string name="menu_approver_employee">Approver Employees</string>
+    <string name="menu_timesheet_approvals">Timesheet Approvals</string>
+    <string name="menu_adjustment_approvals">Adjustments Approvals</string>
+    <string name="menu_overtime_approvals">Overtime Approvals</string>
+    <string name="menu_leave_approvals">Leave Approvals</string>
+
+    <string name="menu_global_settings">Global Settings</string>
+    <string name="menu_location_management">Location Management</string>
+    <string name="menu_holiday_management">Holiday Management</string>
+    <string name="menu_schedule_management">Schedule Management</string>
+    <string name="menu_holiday_types">Holiday Types</string>
+    <string name="menu_leave_types">Leave Types</string>
+    <string name="menu_hr_admin">HR Administrator</string>z
+    <string name="menu_empoyees">Employees</string>
+    <string name="hr_dashboard">HR Dashboard</string>
+
+    <string-array name="time_adjustment_menu">
+        <item>Pending</item>
+        <item>Approved</item>
+        <item>Declined</item>
+        <item>Request Time Adjustment</item>
+    </string-array>
+
+    <string-array name="day_type">
+        <item>REG</item>
+        <item>RD</item>
+        <item>ABSENT</item>
+    </string-array>
+
+    <string name="title_approvees">Approvees</string>
+    <string name="title_approvee">Approvee</string>
+    <string name="title_adjustment_approvals">Adjustments</string>
+
+    <string name="blank_time">--:--:-- --</string>
+    <string name="blank_date">-- -- , ----</string>
+    <string name="blank_month">YYYY-MM-DD</string>
+    <string name="blank">N/A</string>
+    <string name="blank_phone_number">************</string>
+    <string name="blank_email">No Email</string>
+    <string name="blank_name">---- -------</string>
+
+    <string name="no_result">No Result.</string>
+    <string name="try_again">Try Again.</string>
+    <string name="try_again_swipe_up">Swipe down to refresh</string>
+    <string name="cannot_retrieve_data">We could not retrieve your data</string>
+
+
+    <string name="sample_name">Michael Jordan</string>
+
+
+    <string name="button_approve_text">Approve</string>
+    <string name="button_declinee_text">Decline</string>
+
+
+    <string name="message_success">Success</string>
+    <string name="message_error">Error</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
+    <string name="title_fragment_dashboard">My Dashboard</string>
+    <string name="title_fragment_timesheet">My Timesheets</string>
+    <string name="title_fragment_my_profile">My Profile</string>
+    <string name="title_fragment_approver_employees">Approvers Employees</string>
+    <string name="title_fragment_approver_edtr">EDTR Approvals</string>
+    <string name="title_fragment_approver_adjustments">Adjustment Approvals</string>
+    <string name="title_fragment_approver_overtimes">Overtime Approvals</string>
+    <string name="title_fragment_approver_leaves">Leave Approvals</string>
+    <string name="title_fragment_adjustments_requests">Adjustment Requests</string>
+    <string name="title_fragment_overtime_requests">Overtime Requests</string>
+    <string name="title_fragment_leave_requests">Leave Requests</string>
+    <string name="title_fragment_employees">Company Employees</string>
+    <string name="title_fragment_holidays">Holidays</string>
+    <string name="title_fragment_holiday_types">Holiday Types</string>
+    <string name="title_fragment_schedules">Schedules</string>
+    <string name="title_fragment_leave_types">Leave Types Requests</string>
+    <string name="title_fragment_request_adjustment">Request Adjustment</string>
+    <string name="title_fragment_approvee_timesheet">Employee Timesheets</string>
+    <string name="title_fragment_HR_Dashboard">HR Dashboard</string>
+    <string name="title_fragment_EDTR">Timesheet Entry</string>
+    <string name="title_fragment_clock">User Attendance</string>
+    <string name="title_fragment_mobile_edtr">Mobile EDTR</string>
+
+
+    <string name="title_dialog_edit_profile">Edit Profile</string>
+    <string name="required_field_empty">Please fill all fields</string>
+
+    <string name="api_request_login_success">Login Successful!</string>
+    <string name="api_request_logout_success">Logout Successful!</string>
+    <string name="api_request_success">Success!</string>
+    <string name="api_request_failed">Failed!</string>
+    <string name="api_request_unparsable_data">Error! Unparsable JSON data.</string>
+    <string name="api_request_error">"Server Error! Please Try again Later"</string>
+
+    <string name="button_save">"SAVE"</string>
+    <string name="button_cancel">"Cancel"</string>
+    <string name="button_update_profile">"Update Profile"</string>
+    <string name="button_update_password">"Update Password"</string>
+    <string name="button_update_pin">"Update Pin"</string>
+    <string name="update_profile_title">"Update your Profile"</string>
+    <string name="update_password_title">"Change your Password"</string>
+    <string name="update_pin_title">"Change your Pin"</string>
+
+    <string name="header_fragment_adjustment_request">Request an Adjustment</string>
+    <string name="header_fragment_overtime_request">Request an Overtime</string>
+    <string name="header_fragment_leave_request">Request a Leave</string>
+
+    <string name="company_name">Caimito Apps</string>
+    <string name="modal_type_title">Type</string>
+
+    <string name="api_reference">mobile</string>
+
+    <string name="title_no_late">No one got late today</string>
+    <string name="title_no_leave">No one is on leave today</string>
+    <string name="title_no_absent">No one is absent today</string>
+    <string name="message_empty_state">Keep it up!</string>
+
+    <string name="default_content_desc">Image Description</string>
+
+
+    <string name="instruction_title_edtr_weekly">Create a Weekly Request</string>
+    <string name="instruction_body_edtr_weekly">Request for an adjustment for all the days you were present within the week. After editing, click the save button. Wait for your approver to approve your request</string>
+
+    <string name="empty_title">Empty!</string>
+    <string name="empty_body">Nothing to show</string>
+
+</resources>

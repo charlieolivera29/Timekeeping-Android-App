@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary">
+
+            <ImageButton
+                android:id="@+id/img_fullscreen_dialog_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_navigate_before_white_32dp" />
+
+            <TextView
+                android:id="@+id/title_bar_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/img_fullscreen_dialog_close"
+                android:layout_toRightOf="@id/img_fullscreen_dialog_close"
+                android:text="Overtime Request"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/button_holder">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_lg"
+                android:layout_marginBottom="@dimen/margin_lg"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="0.0px"
+                android:visibility="visible"
+                app:cardElevation="@dimen/card_elevation"
+                app:cardPreventCornerOverlap="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_lg"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:id="@+id/overtime_details_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <include
+                                android:id="@+id/enable_edit_pending_overtime"
+                                layout="@layout/includes_text_view_edit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_gravity="end"
+                                android:visibility="gone" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Overtime Request"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="@dimen/h5" />
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_sm"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/margin_xs"
+                                    android:text="Requested On"
+                                    android:textSize="@dimen/h6" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/margin_xs"
+                                    android:text="Status"
+                                    android:textSize="@dimen/h6" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/margin_xs"
+                                    android:text="Overtime Start"
+                                    android:textSize="@dimen/h6" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/margin_xs"
+                                    android:text="Overtime End"
+                                    android:textSize="@dimen/h6" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/margin_xs"
+                                    android:text="Reason"
+                                    android:textSize="@dimen/h6" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_sm"
+                                android:layout_marginLeft="@dimen/margin_sm"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/pending_overtime_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="@dimen/margin_xs"
+                                    android:text="@string/blank_date"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="@dimen/h6"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/pending_overtime_status"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/margin_xs"
+                                    android:text="@string/blank"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="@dimen/h6"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/pending_overtime_shift_in"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/margin_xs"
+                                    android:text="@string/blank_time"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="@dimen/h6"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/pending_overtime_shift_out"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/margin_xs"
+                                    android:text="@string/blank_time"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="@dimen/h6"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/pending_reason"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/margin_xs"
+                                    android:text="@string/blank_time"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="@dimen/h6"
+                                    android:textStyle="bold" />
+
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <android.support.design.card.MaterialCardView
+                            android:id="@+id/btn_delete_leave"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:visibility="gone"
+                            app:cardBackgroundColor="@color/colorError"
+                            app:cardCornerRadius="@dimen/margin_lg"
+                            app:strokeColor="@color/colorError"
+                            app:strokeWidth="@dimen/recyclerview_margin">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/m6"
+                                android:layout_marginTop="@dimen/margin_sm"
+                                android:layout_marginRight="@dimen/m6"
+                                android:layout_marginBottom="@dimen/margin_sm"
+                                android:text="DELETE REQUEST"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/h6" />
+                        </android.support.design.card.MaterialCardView>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <include
+                android:id="@+id/edit_pending_overtime"
+                layout="@layout/includes_request_overtime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_lg"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

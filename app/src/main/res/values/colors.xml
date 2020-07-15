@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAdjusted">#800080</color>
+    <color name="colorRestDay">@color/colorGray</color>
+    <!--<color name="colorAccent">#D81B60</color>-->
+    <color name="colorPrimary">#357EC7</color>
+    <color name="colorPrimaryLight">#ADD8E6</color>
+    <color name="colorPrimaryDark">#0000A0</color>
+    <!--<color name="colorAccent">#D81B60</color>-->
+    <!--<color name="colorAccent">#D81B60</color>-->
+    <!--<color name="colorAccent">#FFFF00</color>-->
+    <color name="colorAccent">#a30000</color>
+
+    <color name="colorWhite">#FFF</color>
+    <color name="colorBlack">#000000</color>
+
+    <color name="colorWhiteSmoke">#F0F0F3</color>
+    <color name="colorSuccess">#4caf50</color>
+    <color name="colorError">#cc0000</color>
+    <color name="colorPending">#FF8C00</color>
+    <color name="colorYellow">#FFFF00</color>
+    <color name="colorUpdate">#00796C</color>
+    <color name="colorGray">#C0C0C0</color>
+
+    <color name="colorTimesheetEmpty">@color/colorGray</color>
+    <color name="colorTimesheetIncomplete">#654321</color>
+    <color name="colorTimesheetComplete">#66B032</color>
+
+    <color name="transparent">@android:color/transparent</color>
+
+</resources>
